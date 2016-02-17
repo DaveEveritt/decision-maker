@@ -1,0 +1,34 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+h1{
+  text-align: center;
+  margin: 0.5em 0;
+}
+#choices {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+fieldset {
+  box-sizing: border-box;
+  display: inline-block;
+  border: none;
+  width: 48%;
+  max-width: 500px;
+  text-align: left;
+  padding-left: 6px;
+  background: #eee;
+}
+fieldset h2 {
+  margin-top: 4px;
+}
+input[type="range"] {
+  width: 74%;
+  font-size: 1em;
+	position: relative;
+}
+#decision {
+  text-align: center;
+}
