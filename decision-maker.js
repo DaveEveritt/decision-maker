@@ -32,6 +32,11 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.task.events({
+    "click .delete": function () {
+      Meteor.call("deleteTask", this._id);
+    }
+  });
 
   // Everything runs once the template is rendered
   Template.decisions.rendered = function() {
@@ -95,5 +100,9 @@ Meteor.methods({
     Tasks.insert({
       text: text
     });
+  },
+  deleteTask: function (taskId) {
+    var task = Tasks.findOne(taskId);
+    Tasks.remove(taskId);
   }
 });
