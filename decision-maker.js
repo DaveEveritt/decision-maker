@@ -1,3 +1,5 @@
+Tasks = new Mongo.Collection("tasks");
+
 if (Meteor.isClient) {
 
   // Gives template access to the input tag values
@@ -5,20 +7,30 @@ if (Meteor.isClient) {
       return Session.get(input);
   });
 
-//   Template.body.helpers({
-//     tasks: [
-//       { text: "This is task 1" },
-//       { text: "This is task 2" },
-//       { text: "This is task 3" }
-//     ]
-//   });
-//       {{#each tasks}}
-//         {{> task}}
-//       {{/each}}
-//
-// <template name="task">
-//   <li>{{text}}</li>
-// </template>
+// from to-do
+  Template.body.helpers({
+    tasks: function() {
+      return Tasks.find({}, {sort: {createdAt: -1}});
+    }
+  });
+
+
+// Taken from to-do
+  Template.body.events({
+    "submit .new-task": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+
+      // Get value from form element
+      var text = event.target.text.value;
+
+      // Insert a task into the collection
+      Meteor.call("addTask", text);
+
+      // Clear form
+      event.target.text.value = "";
+    }
+  });
 
 
   // Everything runs once the template is rendered
@@ -76,4 +88,12 @@ if (Meteor.isClient) {
 
   };
 
-}
+} //end Meteor isClient
+
+Meteor.methods({
+  addTask: function (text) {
+    Tasks.insert({
+      text: text
+    });
+  }
+});

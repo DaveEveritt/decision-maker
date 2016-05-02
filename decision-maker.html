@@ -5,15 +5,31 @@
 <body>
   <h1>Decision-maker</h1>
 
+  <ul>
+    {{#each tasks}}
+      {{> task}}
+    {{/each}}
+  </ul>
+
+
   {{> decisions}}
 </body>
 
+<template name="task">
+  <li>
+    <span class="text">{{text}}</span>
+  </li>
+</template>
+
 <template name="decisions">
 
-  <form action="#" method="get" id="choices">
+  <form action="#" method="get" id="choices" class="new-task">
 
     <fieldset>
       <h2>I <em>want</em> to, because:</h2>
+      
+      <input type="text" name="text" maxlength="40" placeholder="enter reason"><br>
+            
       <label>Reason 1: <input type="range" id="range1" max="10" value="5"></label>
       <output for="range1" id="output1">{{session "sliderValueIs"}}</output>
       <br>
@@ -23,8 +39,11 @@
       <p>How much you <strong>want</strong> to: <span id="choice1" class="choice1"></span>%</p>
     </fieldset>
 
-    <fieldset>
+    <!--<fieldset>
       <h2>I <em>don't</em> want to, because:</h2>
+
+      <input type="text" maxlength="40" placeholder="enter reason">
+      
       <label>Reason 1: <input type="range" id="range3" max="10" value="5"></label>
       <output for="range3" id="output3">{{session "sliderValueIs"}}</output>
       <br>
@@ -32,7 +51,7 @@
       <output for="range4" id="output4">{{session "sliderValueIs"}}</output>
 
       <p>How much you <strong>don't</strong> want to: <span id="choice2"></span>%</p>
-    </fieldset>
+    </fieldset>-->
 
   </form>
 
