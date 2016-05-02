@@ -5,6 +5,22 @@ if (Meteor.isClient) {
       return Session.get(input);
   });
 
+//   Template.body.helpers({
+//     tasks: [
+//       { text: "This is task 1" },
+//       { text: "This is task 2" },
+//       { text: "This is task 3" }
+//     ]
+//   });
+//       {{#each tasks}}
+//         {{> task}}
+//       {{/each}}
+//
+// <template name="task">
+//   <li>{{text}}</li>
+// </template>
+
+
   // Everything runs once the template is rendered
   Template.decisions.rendered = function() {
 
