@@ -5,17 +5,11 @@
 <body>
   <h1>Decision-maker</h1>
 
-  <ul>
-    {{#each tasks}}
-      {{> task}}
-    {{/each}}
-  </ul>
-
-
   {{> decisions}}
+
 </body>
 
-<template name="task">
+<template name="reason">
   <li>
     <span class="text">{{text}}</span> <button class="delete">&times;</button>
   </li>
@@ -23,10 +17,17 @@
 
 <template name="decisions">
 
-  <form action="#" method="get" id="choices" class="new-task">
+  <h2>I <em>want</em> to, because:</h2>
+
+  <ul>
+    {{#each reasons}}
+      {{> reason}}
+    {{/each}}
+  </ul>
+
+  <form action="#" method="get" id="choices">
 
     <fieldset>
-      <h2>I <em>want</em> to, because:</h2>
       
       <input type="text" name="text" maxlength="40" placeholder="enter reason"><br>
             

@@ -1,4 +1,4 @@
-Tasks = new Mongo.Collection("tasks");
+Reasons = new Mongo.Collection("reasons");
 
 if (Meteor.isClient) {
 
@@ -8,37 +8,36 @@ if (Meteor.isClient) {
   });
 
 // from to-do
-  Template.body.helpers({
-    tasks: function() {
-      return Tasks.find({}, {sort: {createdAt: -1}});
+  Template.decisions.helpers({
+    reasons: function() {
+      return Reasons.find({}, {sort: {createdAt: -1}});
     }
   });
 
 
 // Taken from to-do
-  Template.body.events({
-    "submit .new-task": function (event) {
-      // Prevent default browser form submit
+  Template.decisions.events({
+    "submit #choices": function (event) {
       event.preventDefault();
 
       // Get value from form element
       var text = event.target.text.value;
 
-      // Insert a task into the collection
-      Meteor.call("addTask", text);
+      // Insert a reason into the collection
+      Meteor.call("addReason", text);
 
       // Clear form
       event.target.text.value = "";
     }
   });
 
-  Template.task.events({
+  Template.reason.events({
     "click .delete": function () {
-      Meteor.call("deleteTask", this._id);
+      Meteor.call("deleteReason", this._id);
     }
   });
 
-  // Everything runs once the template is rendered
+  // Runs everything once the template is rendered
   Template.decisions.rendered = function() {
 
     // Gets multiple 'elems' by ID
@@ -96,13 +95,13 @@ if (Meteor.isClient) {
 } //end Meteor isClient
 
 Meteor.methods({
-  addTask: function (text) {
-    Tasks.insert({
+  addReason: function (text) {
+    Reasons.insert({
       text: text
     });
   },
-  deleteTask: function (taskId) {
-    var task = Tasks.findOne(taskId);
-    Tasks.remove(taskId);
+  deleteReason: function (reasonId) {
+    var reason = Reasons.findOne(reasonId);
+    Reasons.remove(reasonId);
   }
 });
