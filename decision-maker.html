@@ -11,7 +11,9 @@
 
 <template name="reason">
   <li>
-    <span class="text">{{text}}</span> <button class="delete">&times;</button>
+    <label>{{text}}: <input type="range" id="range1" max="10" value="5"></label>
+    <output for="range1" id="output1">{{session "sliderValueIs"}}</output>
+    <button class="delete">&times;</button>
   </li>
 </template>
 
