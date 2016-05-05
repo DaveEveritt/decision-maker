@@ -56,17 +56,20 @@ if (Meteor.isClient) {
     var elems = ["choices","choice1","choice2","decision"];
     getElemsById(elems);
 
+    // Number of reasons (make dynamic when users can add reasons)
+    var sliders = 4;
+
     // Displays the input range value for the number of sliders...
     function populate() {
-      // Number of reasons (make dynamic when users can add reasons)
-      var sliders = 4;
 
       // Updates the output tags with slider values
       for(var i = sliders; i > 0; i-=1) {
         window["output" + i].value = window["range" + i].value;
+        // put in an array
       }
 
-      // Calcultes the values for the 'decision' message
+      // Calculates the values for the 'decision' message
+      // read from above array instead
       elems[1].innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
       elems[2].innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
 

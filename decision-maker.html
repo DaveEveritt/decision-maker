@@ -11,8 +11,8 @@
 
 <template name="reason">
   <li>
-    <label>{{text}}: <input type="range" id="range1" max="10" value="5"></label>
-    <output for="range1" id="output1">{{session "sliderValueIs"}}</output>
+    <label>{{text}}: <input type="range" id="range" max="10" value="5"></label>
+    <output for="range" id="output1">{{session "sliderValueIs"}}</output>
     <button class="delete">&times;</button>
   </li>
 </template>
@@ -21,7 +21,7 @@
 
   <h2>I <em>want</em> to, because:</h2>
 
-  <ul>
+  <ul class="reasons">
     {{#each reasons}}
       {{> reason}}
     {{/each}}
@@ -31,7 +31,7 @@
 
     <fieldset>
       
-      <input type="text" name="text" maxlength="40" placeholder="enter reason"><br>
+      <input type="text" name="text" maxlength="40" placeholder="enter reason for"><br>
             
       <label>Reason 1: <input type="range" id="range1" max="10" value="5"></label>
       <output for="range1" id="output1">{{session "sliderValueIs"}}</output>
@@ -45,7 +45,7 @@
     <!--<fieldset>
       <h2>I <em>don't</em> want to, because:</h2>
 
-      <input type="text" maxlength="40" placeholder="enter reason">
+      <input type="text_for" maxlength="40" disabled placeholder="enter reason against"><br>
       
       <label>Reason 1: <input type="range" id="range3" max="10" value="5"></label>
       <output for="range3" id="output3">{{session "sliderValueIs"}}</output>

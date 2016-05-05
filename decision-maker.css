@@ -6,6 +6,33 @@ h1{
   text-align: center;
   margin: 0.5em 0;
 }
+.reasons {
+  box-sizing: border-box;
+  width: 48%;
+  background: #eee;
+  list-style: none;
+  text-align: right;
+  padding: 0.5em 8px;
+}
+.reasons li {
+  padding: 0.25em 0;
+}
+.reasons input[type="range"] {
+  width: 44%;
+  position: relative;
+  top: 4px;
+}
+.delete {
+  font-weight: bold;
+}
+.delete:hover {
+  color: #f33;
+}
+
+
+
+/* ========== OLD ============ */
+
 #choices {
   margin: 0 auto;
   padding: 0;
