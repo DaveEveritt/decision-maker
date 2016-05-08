@@ -10,21 +10,21 @@
 </body>
 
 <template name="reason">
+  <h2>{{reasonsCount}} reasons why I <em>want</em> to:</h2>
+
+  {{#each reasons}}
   <li>
-    <label>{{text}}: <input type="range" id="range" max="10" value="5"></label>
+    <label>{{@index}}: {{text}}: <input type="range" id="range" max="10" value="5"></label>
     <output for="range" id="output1">{{session "sliderValueIs"}}</output>
     <button class="delete">&times;</button>
   </li>
+  {{/each}}
 </template>
 
 <template name="decisions">
 
-  <h2>{{reasonsCount}} reasons why I <em>want</em> to:</h2>
-
   <ul class="reasons">
-    {{#each reasons}}
-      {{> reason}}
-    {{/each}}
+    {{> reason}}
   </ul>
   
   <form action="#" method="get" id="choices">

@@ -8,7 +8,7 @@ if (Meteor.isClient) {
   });
 
 // from to-do
-  Template.decisions.helpers({
+  Template.reason.helpers({
     reasons: function() {
       return Reasons.find({}, {sort: {createdAt: -1}});
     },

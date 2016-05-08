@@ -8,6 +8,7 @@ h1{
 }
 h2 {
   padding-left: 8px;
+  margin: 0;
 }
 .reasons {
   box-sizing: border-box;
@@ -21,7 +22,7 @@ h2 {
   padding: 0.25em 0;
 }
 .reasons input[type="range"] {
-  width: 40%;
+  width: 38%;
   position: relative;
   top: 4px;
 }
