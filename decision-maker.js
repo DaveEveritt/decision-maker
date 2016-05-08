@@ -60,11 +60,10 @@ if (Meteor.isClient) {
     getElemsById(elems);
 
     // Counts number of reasons added by user:
-    // var sliders = 4;
-    // this failsFIX:
-    // var sliders = Template.decisions.helpers.reasonsCount;
-    var sliders = Reasons.find().count(); // gives 0
-    console.log(sliders);
+    var sliders = 4;
+    // var sliders = Template.decisions.helpers.reasonsCount; //fails
+    // var sliders = Reasons.find().count(); // gives 0
+    // console.log(sliders);
 
     // Displays the input range value for the number of sliders...
     function populate() {
