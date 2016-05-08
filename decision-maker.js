@@ -11,6 +11,9 @@ if (Meteor.isClient) {
   Template.decisions.helpers({
     reasons: function() {
       return Reasons.find({}, {sort: {createdAt: -1}});
+    },
+    reasonsCount: function() {
+      return Reasons.find().count();
     }
   });
 
