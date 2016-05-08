@@ -19,7 +19,7 @@
 
 <template name="decisions">
 
-  <h2>I <em>want</em> to, because:</h2>
+  <h2>{{reasonsCount}} reasons why I <em>want</em> to:</h2>
 
   <ul class="reasons">
     {{#each reasons}}
@@ -27,8 +27,6 @@
     {{/each}}
   </ul>
   
-  <p style="padding-left: 12px;">Number of reasons: {{reasonsCount}}</p>
-
   <form action="#" method="get" id="choices">
 
     <fieldset>
