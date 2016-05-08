@@ -15,7 +15,7 @@
   {{#each reasons}}
   <li>
     <label>{{@index}}: {{text}}: <input type="range" id="range" max="10" value="5"></label>
-    <output for="range" id="output1">{{session "sliderValueIs"}}</output>
+    <output for="range" id="output{{@index}}">{{session "sliderValueIs"}}</output>
     <button class="delete">&times;</button>
   </li>
   {{/each}}
