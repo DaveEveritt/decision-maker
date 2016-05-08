@@ -59,8 +59,12 @@ if (Meteor.isClient) {
     var elems = ["choices","choice1","choice2","decision"];
     getElemsById(elems);
 
-    // Number of reasons (make dynamic when users can add reasons)
-    var sliders = 4;
+    // Counts number of reasons added by user:
+    // var sliders = 4;
+    // this failsFIX:
+    // var sliders = Template.decisions.helpers.reasonsCount;
+    var sliders = Reasons.find().count(); // gives 0
+    console.log(sliders);
 
     // Displays the input range value for the number of sliders...
     function populate() {
@@ -73,17 +77,17 @@ if (Meteor.isClient) {
 
       // Calculates the values for the 'decision' message
       // read from above array instead
-      elems[1].innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
-      elems[2].innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
+      // elems[1].innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
+      // elems[2].innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
 
       // Conditionally sets the 'decision' message
-      if (elems[1].innerHTML > elems[2].innerHTML) {
-        elems[3].innerHTML = "Looks like you want to!";
-      } else if(elems[1].innerHTML < elems[2].innerHTML) {
-        elems[3].innerHTML = "Looks like you don't want to!";
-      } else {
-        elems[3].innerHTML = "Make up your mind!";
-      }
+      // if (elems[1].innerHTML > elems[2].innerHTML) {
+      //   elems[3].innerHTML = "Looks like you want to!";
+      // } else if(elems[1].innerHTML < elems[2].innerHTML) {
+      //   elems[3].innerHTML = "Looks like you don't want to!";
+      // } else {
+      //   elems[3].innerHTML = "Make up your mind!";
+      // }
     }
 
     // Displays the initial  default slider values

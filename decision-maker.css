@@ -18,7 +18,7 @@ h1{
   padding: 0.25em 0;
 }
 .reasons input[type="range"] {
-  width: 44%;
+  width: 40%;
   position: relative;
   top: 4px;
 }
