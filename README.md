@@ -1,9 +1,9 @@
-# decision-maker
+# Decision maker
 
-An initial port to Meteor of a pure Javascript prototype for an app to help people make decisions.
+Originally ported to Meteor from a pure Javascript prototype, now reverted to the latter because … frameworks.
 
-## TO DO (almost everything, but first…)
+## TO DO
 
-* do the [Meteor tutorial](https://www.meteor.com/tutorials/blaze/creating-an-app) and see what can be used for this project
-* branch: make choice reasons user-addable with titles of restricted length
-* branch: limit reasons to around 7 to manage cognitive load/dithering
+* enable users to add decisions to the list
+* limit reasons for decisions to 7 each for/against (to manage cognitive load/dithering)
+* restrict length of reasons to a reasonable length

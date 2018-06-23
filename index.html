@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--[if IE]><![endif]-->
+  <title>Decision-maker</title>
+	<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<h1>Decision-maker</h1>
+
+<form action="#" method="get" id="choices">
+
+  <fieldset>
+    <h2>I <em>want</em> to, because:</h2>
+    <label>Reason 1: <input type="range" id="range1" max="10" value="5"></label>
+    <output for="range1" id="output1"></output>
+    <br>
+    <label>Reason 2: <input type="range" id="range2" max="10" value="5"></label>
+    <output for="range2" id="output2"></output>
+
+    <p>How much you <strong>want</strong> to: <span id="choice1"></span>%</p>
+  </fieldset>
+
+  <fieldset>
+    <h2>I <em>don't</em> want to, because:</h2>
+    <label>Reason 1: <input type="range" id="range3" max="10" value="5"></label>
+    <output for="range3" id="output3"></output>
+    <br>
+    <label>Reason 2: <input type="range" id="range4" max="10" value="5"></label>
+    <output for="range4" id="output4"></output>
+
+    <p>How much you <strong>don't</strong> want to: <span id="choice2"></span>%</p>
+  </fieldset>
+
+</form>
+
+<h2 id="decision"></h2>
+
+<script src="javascript.js"></script>
+
+</body>
+</html>
