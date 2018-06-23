@@ -1,7 +1,7 @@
 (function () {
 
   // Gets multiple 'elems' by ID
-  var getElemsById = function(ids) {
+  const getElemsById = function(ids) {
   	if(ids === undefined || (typeof ids !== 'object') || (ids.length === 0)) {
   		alert('Expecting an array based parameter, or no ids given, exiting');
   		return null;
@@ -13,7 +13,7 @@
   };
 
   // Sets and gets the required document elements
-  var elems = ["choices","choice1","choice2","decision"];
+  const elems = ["choices","choice1","choice2","decision"];
   getElemsById(elems);
 
 // fails because the var is set to the value:
@@ -21,7 +21,7 @@
   // var choice02 = elems[2].innerHTML;
   // var decision = elems[3].innerHTML;
 
-  var sliders = 4; // TODO: make dynamic when users enter reasons
+  let sliders = 4; // TODO: make dynamic when users enter reasons
 
   // Displays the input range value for the number of sliders...
   function populate() {
