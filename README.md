@@ -4,6 +4,7 @@ Originally ported to Meteor from a pure Javascript prototype, now reverted to th
 
 ## TO DO
 
-* enable users to add decisions to the list
-* limit reasons for decisions to 7 each for/against (to manage cognitive load/dithering)
+* add input and handler to enable users to add for/against
+* use a component for list items
+* limit reasons to 7 decisions for/against to manage cognitive load/dithering
 * restrict length of reasons to a reasonable length
