@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <!--[if IE]><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decision-maker</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
@@ -12,21 +11,32 @@
 
 <h1>Decision-maker</h1>
 
-<form action="#" method="get" id="reasons">
-
+<form action="#" method="#" id="reasons" class="reasons">
   <fieldset>
-    <h2>Enter reasons for:</h2>
-    <label for="for1" id="for"></label><input type="text">
-  </fieldset>
-  <fieldset>
-    <h2>Enter reasons against:</h2>
-    <label for="against1" id="against"></label><input type="text">
+    <h2>Reasons for:</h2>
+    <label for="for" id="for"></label><input id="for" type="text" maxlength="110">
   </fieldset>
 
+  <fieldset>
+    <h2>Reasons against:</h2>
+    <label for="not" id="against"></label><input id="not" type="text" maxlength="110">
+  </fieldset>
 </form>  
 
-<form action="#" method="get" id="choices">
+<form action="#" method="#" id="choices">
+  <fieldset id="forReasons">
+    <h2>I <em>want</em> to, because:</h2>
 
+    <p>How much you <strong>want</strong> to: <span id="choice1"></span>%</p>
+  </fieldset>
+
+  <fieldset id="notReasons">
+    <h2>I <em>don't</em> want to, because:</h2>
+
+    <p>How much you <strong>don't</strong> want to: <span id="choice2"></span>%</p>
+  </fieldset>
+</form>
+<!-- <form action="#" method="#" id="choices">
   <fieldset>
     <h2>I <em>want</em> to, because:</h2>
     <label>Reason 1: <input type="range" id="range1" max="10" value="5"></label>
@@ -48,8 +58,7 @@
 
     <p>How much you <strong>don't</strong> want to: <span id="choice2"></span>%</p>
   </fieldset>
-
-</form>
+</form> -->
 
 <h2 id="decision"></h2>
 

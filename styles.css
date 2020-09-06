@@ -25,6 +25,10 @@ fieldset {
 fieldset h2 {
   margin-top: 4px;
 }
+.reasons input {
+  box-sizing: border-box;
+  width: 98%;
+}
 input[type="range"] {
   width: 74%;
   font-size: 1em;
