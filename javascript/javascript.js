@@ -4,70 +4,87 @@
 
   // Helper fucntions
   const getEl = (el) => { return document.getElementById(el) };
-  let sliders = 1;
+  let sliders = 0;
 
-  function keepCount(num) {
-    return num + 1;
-  }
-
-  function addReason() {
-    let text = event.target.value || "";
-    
-    let fornot = event.target.id;
-    console.log(fornot);
-    
-    if (text) {
-      let newSlider = `
-      <label>${text}:<br><input type="range" id="range${keepCount(0)}" max="10" value="5"></label>
-      <output for="range${keepCount(0)}" id="output${keepCount(0)}"></output><br><hr>`
-
-      console.log(newSlider);
-      const reason = getEl(`${fornot}Reasons`).firstElementChild;
-      
-      reason.insertAdjacentHTML("afterend", newSlider);
-      sliders += 1;
-    }
-  }
-
-  // listen for users to input text
+  // Listen for users to input text
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(event) {
       if (event.keyCode === 13) {
-        console.log("event listening");
         addReason();
       }
     });
   });
+
+// Add reasons as they're input
+  function addReason() {
+    let text = event.target.value || "";
+    let fornot = event.target.id;
+    
+    if (text) {
+      let newSlider = `
+      <label>${text}:<br><input type="range" id="range${sliders+1}" max="10" value="5"></label>
+      <output for="range${sliders+1}" class="range${sliders+1}">5</output><br><hr>`
+      // <output for="range${sliders+1}" id="output${sliders+1}"></output><br><hr>`
+
+      const reason = getEl(`${fornot}Reasons`).firstElementChild;
+      reason.insertAdjacentHTML("afterend", newSlider);
+      sliders += 1;
+    }
+  }
   
   // Display the input range value for the number of sliders...
-  // function populate() {
-  //   for(var i = sliders; i > 1; i-=1) {
-  //     window["output" + i].value = window["range" + i].value;
-  //   }
-  //   let whichchoice = `choice${i}`;
-  //   let whichrange = `range${i}`;
-  //   whichchoice.innerHTML = ((+whichrange.value) + (+`range${i+1}`.value))*10 / 2;
-  //   getEl("choice2").innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
+  function populate(sliders) {
+    
+    console.log(document.querySelector(`#${event.target.id}`));
+    console.log("in populate");
+    document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
+    
+    // get number of forReasons and notReasons sliders
+    const forReasons = document.querySelectorAll("#forReasons output").length;
+    const notReasons = document.querySelectorAll("#notReasons output").length;
+    console.log("For reasons" + forReasons);
+    console.log("Not reasons" + notReasons);
+    
+    // get totals of forReasons and notReasons sliders
+    let totalReasons = forReasons + notReasons;
+    console.log(`in populate, TOTAL sliders = ${totalReasons}`);
+    
+    // get all slider values for each
+    // divide total values by number of sliders for each to get average
+    // store the result from choiceY and choiceN in a variable
+    // choiceYsum = choiceY.sliders.value / choiceY.sliders.length
+    // choiceNsum = choiceN.sliders.value / choiceN.sliders.length
+    // choiceY.innerHTML = choiceYsum;
+    // choiceN.innerHTML = choiceNsum;
+    
+    // the above replaces this:
+    // choiceY.innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
+    // getEl("choiceN").innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
 
-  //   if (getEl("choice1").innerHTML > getEl("choice2").innerHTML) {
-  //     getEl("decision").innerHTML = "Looks like you want to!";
-  //     getEl("decision").style.color = '#00dd00';
-  //   } else if(getEl("choice1").innerHTML < getEl("choice2").innerHTML) {
-  //     getEl("decision").innerHTML = "Looks like you don't want to!";
-  //     getEl("decision").style.color = '#dd6666';
-  //   } else {
-  //     getEl("decision").innerHTML = "Make up your mind!";
-  //     getEl("decision").style.color = '#333333';
-  //   }
-  // }
+    // Display the overall choice
+    if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
+      getEl("decision").innerHTML = "Looks like you want to!";
+      getEl("decision").style.color = '#009900';
+    } else if(getEl("choiceY").innerHTML < getEl("choiceN").innerHTML) {
+      getEl("decision").innerHTML = "Looks like you don't want to!";
+      getEl("decision").style.color = '#ee6666';
+    } else {
+      getEl("decision").innerHTML = "Make up your mind!";
+      getEl("decision").style.color = '#333333';
+    }
+  }
 
   // Display the default input range value display
-  // populate();
+  // populate(sliders);
 
   // Update the input range value display
-  // choices.addEventListener("input", function() {
-  //   populate();
-  // }, false);
+  choices.addEventListener("input", function() {
+    console.log(event.target.id);
+    if (event.target.id !== "for" || event.target.id !== "not"){
+      console.log("calling populate in eventListener");
+      populate();
+    }
+  }, false);
 
 })();
