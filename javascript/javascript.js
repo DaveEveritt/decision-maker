@@ -34,25 +34,29 @@
   }
   
   // Display the input range value for the number of sliders...
-  function populate(sliders) {
+  function populate() {
     
     console.log(document.querySelector(`#${event.target.id}`));
     console.log("in populate");
     document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
     
     // get number of forReasons and notReasons sliders
-    const forReasons = document.querySelectorAll("#forReasons output").length;
-    const notReasons = document.querySelectorAll("#notReasons output").length;
-    console.log("For reasons" + forReasons);
-    console.log("Not reasons" + notReasons);
+    const forReasons = document.querySelectorAll("#forReasons output");
+    const notReasons = document.querySelectorAll("#notReasons output");
+    console.log("For reasons: " + forReasons.length);
+    console.log("Not reasons: " + notReasons.length);
     
-    // get totals of forReasons and notReasons sliders
-    let totalReasons = forReasons + notReasons;
+    // get total number of sliders
+    let totalReasons = forReasons.length + notReasons.length;
     console.log(`in populate, TOTAL sliders = ${totalReasons}`);
     
-    // get all slider values for each
+    // loop over slider values for forReasons/notReasons and store
+    console.log("For reasons value: " + forReasons[0].value);
+    console.log("NOT reasons value: " + notReasons[0].value);
+    
     // divide total values by number of sliders for each to get average
-    // store the result from choiceY and choiceN in a variable
+    // store the result from choiceY and choiceN in a variable:
+    // 
     // choiceYsum = choiceY.sliders.value / choiceY.sliders.length
     // choiceNsum = choiceN.sliders.value / choiceN.sliders.length
     // choiceY.innerHTML = choiceYsum;

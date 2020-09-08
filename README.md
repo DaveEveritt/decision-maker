@@ -4,12 +4,13 @@ Originally ported to Meteor from a pure Javascript prototype, now reverted to th
 
 ## TO DO
 
-- [ ] increment numbers on each reason
+- [ ] update decision totals
 - [ ] use a component for list items
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 
 ## TO DONE
 
+- [x] increment numbers on each reason
 - [x] add input and handler to enable users to add for/against
 - [x] restrict length of reasons to a reasonable length (110 chars)
 - [x] use CSS classes instead of `style.color`
