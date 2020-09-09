@@ -50,21 +50,30 @@
     let totalReasons = forReasons.length + notReasons.length;
     console.log(`in populate, TOTAL sliders = ${totalReasons}`);
     
-    // loop over slider values for forReasons/notReasons and store
-    console.log("For reasons value: " + forReasons[0].value);
-    console.log("NOT reasons value: " + notReasons[0].value);
+    // IF forReasons/notReasons sliders exist, loop over slider values and store
+    let choiceYsum = 5;
+    let choiceNsum = 5;
+    if (forReasons.length > 0) {
+      choiceYsum += parseInt(forReasons[forReasons.length-1].value) 
+      console.log("For reasons value: " + forReasons[0].value);
+    }
+    if (notReasons.length > 0) {
+      choiceNsum += parseInt(notReasons[forReasons.length-1].value) 
+      console.log("NOT reasons value: " + notReasons[0].value);
+    }
+    console.log("choiceYsum: " + choiceYsum);
+    console.log("choiceNsum: " + choiceNsum);
     
-    // divide total values by number of sliders for each to get average
+    // average percentage = divide slider values total by num of sliders
     // store the result from choiceY and choiceN in a variable:
-    // 
-    // choiceYsum = choiceY.sliders.value / choiceY.sliders.length
-    // choiceNsum = choiceN.sliders.value / choiceN.sliders.length
-    // choiceY.innerHTML = choiceYsum;
-    // choiceN.innerHTML = choiceNsum;
-    
-    // the above replaces this:
+    // NEW:
+    let choiceYtotal = choiceYsum / forReasons.length;
+    let choiceNtotal = choiceNsum / notReasons.length;
+    choiceY.innerHTML = choiceYtotal;
+    choiceN.innerHTML = choiceNtotal;
+    // OLD:
     // choiceY.innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
-    // getEl("choiceN").innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
+    // choiceN.innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
 
     // Display the overall choice
     if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
