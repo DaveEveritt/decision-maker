@@ -30,52 +30,52 @@
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       sliders += 1;
+      console.log(`$sliders count in addReason: ${sliders}`);
     }
   }
   
   // Display the input range value for the number of sliders...
-  function populate() {
+  function populate(evTarget) {
+    console.log(`$sliders count in populate: ${sliders}`);
+    console.log(evTarget);
     
     console.log(document.querySelector(`#${event.target.id}`));
     console.log("in populate");
     document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
     
-    // get number of forReasons and notReasons sliders
+    // Get number of forReasons and notReasons sliders IS OKAY
     const forReasons = document.querySelectorAll("#forReasons output");
     const notReasons = document.querySelectorAll("#notReasons output");
-    console.log("For reasons: " + forReasons.length);
-    console.log("Not reasons: " + notReasons.length);
+    // console.log(`forReasons.length: ${forReasons.length}`);
+    // console.log(`notReasons.length: ${notReasons.length}`);
     
-    // get total number of sliders
-    let totalReasons = forReasons.length + notReasons.length;
-    console.log(`in populate, TOTAL sliders = ${totalReasons}`);
+    // Total number of sliders updates okay
+    console.log(`TOTAL sliders ($sliders): ${sliders}`);
     
-    // IF forReasons/notReasons sliders exist, loop over slider values and store
-    let choiceYsum = 5;
-    let choiceNsum = 5;
+    // Once forReasons/notReasons sliders are created, append their values
+    let choiceYsum = 0;
+    let choiceNsum = 0;
+    // THIS IS WRONG AFTER MORE THAN 2 SLIDERS:
     if (forReasons.length > 0) {
-      choiceYsum += parseInt(forReasons[forReasons.length-1].value) 
-      console.log("For reasons value: " + forReasons[0].value);
+      console.log(`forReasons.length: ${forReasons.length}`)
+      choiceYsum += parseInt(forReasons[forReasons.length-1].value);
     }
     if (notReasons.length > 0) {
-      choiceNsum += parseInt(notReasons[forReasons.length-1].value) 
-      console.log("NOT reasons value: " + notReasons[0].value);
+      console.log(`notReasons.length: ${notReasons.length}`)
+      choiceNsum += parseInt(notReasons[notReasons.length-1].value);
     }
     console.log("choiceYsum: " + choiceYsum);
     console.log("choiceNsum: " + choiceNsum);
     
-    // average percentage = divide slider values total by num of sliders
-    // store the result from choiceY and choiceN in a variable:
-    // NEW:
-    let choiceYtotal = choiceYsum / forReasons.length;
-    let choiceNtotal = choiceNsum / notReasons.length;
+    // average percentage = divide Y/N slider values total by num of sliders
+    // THIS IS WRONG AFTER ADDING 'NOT' SLIDERS:
+    let choiceYtotal = (choiceYsum * 10) / sliders;
+    let choiceNtotal = (choiceNsum * 10) / sliders;
     choiceY.innerHTML = choiceYtotal;
     choiceN.innerHTML = choiceNtotal;
-    // OLD:
-    // choiceY.innerHTML = ((+range1.value) + (+range2.value))*10 / 2;
-    // choiceN.innerHTML = ((+range3.value) + (+range4.value))*10 / 2;
 
     // Display the overall choice
+    // use choiceYtotal and choiceNtotal instead
     if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
       getEl("decision").innerHTML = "Looks like you want to!";
       getEl("decision").style.color = '#009900';
@@ -88,15 +88,10 @@
     }
   }
 
-  // Display the default input range value display
-  // populate(sliders);
-
-  // Update the input range value display
+  // Listen for changes in sliders
   choices.addEventListener("input", function() {
-    console.log(event.target.id);
     if (event.target.id !== "for" || event.target.id !== "not"){
-      console.log("calling populate in eventListener");
-      populate();
+      populate(event.target.id);
     }
   }, false);
 
