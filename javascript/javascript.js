@@ -2,17 +2,20 @@
 
 (function () {
 
-  // Helper fucntions
+  // Helper functions and setup:
   const getEl = (el) => { return document.getElementById(el) };
+  // count number of sliders to assign unique IDs
   let sliders = 0;
+  const choicesY = {};
+  const choicesN = {};
+  let choicesYsum = 0;
+  let choicesNsum = 0;
 
-  // Listen for users to input text
+  // Listen for users to input text and hit "return"
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) {
-        addReason();
-      }
+      if (event.keyCode === 13) addReason();
     });
   });
 
@@ -20,62 +23,68 @@
   function addReason() {
     let text = event.target.value || "";
     let fornot = event.target.id;
+    console.log(`Adding ${fornot} slider`);
+    
     
     if (text) {
+      // Create new slider HTML and add to DOM
       let newSlider = `
       <label>${text}:<br><input type="range" id="range${sliders+1}" max="10" value="5"></label>
       <output for="range${sliders+1}" class="range${sliders+1}">5</output><br><hr>`
-      // <output for="range${sliders+1}" id="output${sliders+1}"></output><br><hr>`
-
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
+      
+      // Add new slider to choices object with default value
+      if (fornot === "for") choicesY[`range${sliders+1}`] = 5;
+      if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
       sliders += 1;
-      console.log(`$sliders count in addReason: ${sliders}`);
     }
+    console.log(choicesY,choicesN);
   }
   
   // Display the input range value for the number of sliders...
-  function populate(evTarget) {
-    console.log(`$sliders count in populate: ${sliders}`);
-    console.log(evTarget);
-    
-    console.log(document.querySelector(`#${event.target.id}`));
-    console.log("in populate");
+  function populate() {
+
     document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
+    let sliderID = event.target.id;
     
-    // Get number of forReasons and notReasons sliders IS OKAY
+    // OKAY: get number of forReasons and notReasons sliders
     const forReasons = document.querySelectorAll("#forReasons output");
     const notReasons = document.querySelectorAll("#notReasons output");
-    // console.log(`forReasons.length: ${forReasons.length}`);
-    // console.log(`notReasons.length: ${notReasons.length}`);
     
-    // Total number of sliders updates okay
-    console.log(`TOTAL sliders ($sliders): ${sliders}`);
+    // check if slider is "yes" or "not"
+    let forOrNot = event.target.parentElement.parentElement.id;
     
-    // Once forReasons/notReasons sliders are created, append their values
-    let choiceYsum = 0;
-    let choiceNsum = 0;
-    // THIS IS WRONG AFTER MORE THAN 2 SLIDERS:
-    if (forReasons.length > 0) {
-      console.log(`forReasons.length: ${forReasons.length}`)
-      choiceYsum += parseInt(forReasons[forReasons.length-1].value);
+    // Add slider ID and value to "yes" or "not" sliders
+    if (forReasons.length > 0 && forOrNot === "forReasons") {
+      choicesY[sliderID] = parseInt(event.target.value);
+      console.log(`Adjusting value of 'yes' slider ${sliderID}`);
     }
-    if (notReasons.length > 0) {
-      console.log(`notReasons.length: ${notReasons.length}`)
-      choiceNsum += parseInt(notReasons[notReasons.length-1].value);
+    if (notReasons.length > 0 && forOrNot === "notReasons") {
+      choicesN[sliderID] = parseInt(event.target.value);
+      console.log(`Adjusting value of 'not' slider ${sliderID}`);
     }
-    console.log("choiceYsum: " + choiceYsum);
-    console.log("choiceNsum: " + choiceNsum);
+    console.log("YES:", choicesY, "NOT:", choicesN);
     
-    // average percentage = divide Y/N slider values total by num of sliders
-    // THIS IS WRONG AFTER ADDING 'NOT' SLIDERS:
-    let choiceYtotal = (choiceYsum * 10) / sliders;
-    let choiceNtotal = (choiceNsum * 10) / sliders;
+    function sumChoices(choices) {
+      return Object.values(choices).reduce((a, b) => a + b, 0);
+    }
+    
+    choicesYsum = sumChoices(choicesY);
+    choicesNsum = sumChoices(choicesN);
+    console.log(`Add choicesY: ${choicesYsum}`);
+    console.log(`Add choicesN: ${choicesNsum}`);
+
+    console.log(`choicesYsum: ${choicesYsum}, choicesNsum: ${choicesNsum}`);
+    
+    // average percentage = divide total Y/N slider values by num of sliders
+    let choiceYtotal = choicesYsum / Object.keys(choicesY).length; // * 10
+    let choiceNtotal = choicesNsum / Object.keys(choicesN).length; // * 10
+    
     choiceY.innerHTML = choiceYtotal;
     choiceN.innerHTML = choiceNtotal;
 
     // Display the overall choice
-    // use choiceYtotal and choiceNtotal instead
     if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
       getEl("decision").innerHTML = "Looks like you want to!";
       getEl("decision").style.color = '#009900';
