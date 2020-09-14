@@ -15,7 +15,10 @@
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(event) {
-      if (event.keyCode === 13) addReason();
+      if (event.keyCode === 13) {
+        addReason();
+        event.target.value = "";
+      }
     });
   });
 
@@ -37,9 +40,17 @@
       // Add new slider to choices object with default value
       if (fornot === "for") choicesY[`range${sliders+1}`] = 5;
       if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
+            
+      // show default percentage
+      if (sliders <= 2) {
+        console.log(choiceN, choiceY);
+        if (fornot === "for") choiceY.innerHTML = 50;
+        if (fornot === "not") choiceN.innerHTML = 50;
+      }
+    
       sliders += 1;
     }
-    console.log(choicesY,choicesN);
+    // console.log(choicesY,choicesN);
   }
   
   // Display the input range value for the number of sliders...
@@ -78,11 +89,11 @@
     console.log(`choicesYsum: ${choicesYsum}, choicesNsum: ${choicesNsum}`);
     
     // average percentage = divide total Y/N slider values by num of sliders
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length; // * 10
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length; // * 10
+    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
+    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
-    choiceY.innerHTML = choiceYtotal;
-    choiceN.innerHTML = choiceNtotal;
+    isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
+    isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
 
     // Display the overall choice
     if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
