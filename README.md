@@ -1,12 +1,35 @@
 # Decision maker
 
-Originally ported to Meteor from a pure Javascript prototype, now reverted to the latter because… frameworks.
+Because decisions are hard for me, I made this.
 
 ## TO DO
 
-- [ ] use queue code in projects/js-queue/javascript-examples
-- [ ] add input and handler to enable users to add for/against
-- [ ] use a component for list items
-- [ ] use CSS classes instead of `style.color`
+- [ ] branch master in "static", merge textinput into master
+- [ ] enable deletion of reasons
+- [ ] enable swapping wrongly entered reasons between for/not
+- [ ] make mobile-first with tabs
+- [ ] replace fieldset h2 with legend and style
+
+## TO DONE
+
+- [x] use Y N sliders instead of total sliders (line ~46)
+- [x] CSS: use classlist.add instead of `style.color`
+- [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
+- [x] fix NaN for initial percentages
+- [x] clear text input after entry
+- [x] multiply calculations for % by 100
+- [x] update decision totals
+- [x] increment numbers on each reason
+- [x] add input and handler to enable users to add for/against
+- [x] restrict length of reasons to a reasonable length (110 chars)
+
+## FUTURE?
+
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
-- [ ] restrict length of reasons to a reasonable length
+- [ ] use a component for list items
+
+---
+
+## Notes
+
+Originally ported to Meteor from a pure Javascript prototype, now reverted to the latter because… frameworks.
