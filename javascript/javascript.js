@@ -41,17 +41,14 @@
       if (fornot === "for") choicesY[`range${sliders+1}`] = 5;
       if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
             
-      // show default percentage when first added on Y or N
-      // check Y N sliders instead
-      if (sliders <= 2) {
-        console.log(choiceN, choiceY);
+      // Show default percentage when first added on Y or N
+      if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 50;
         if (fornot === "not") choiceN.innerHTML = 50;
       }
     
       sliders += 1;
     }
-    // console.log(choicesY,choicesN);
   }
   
   // Display the input range value for the number of sliders...
@@ -86,10 +83,8 @@
     choicesNsum = sumChoices(choicesN);
     console.log(`Add choicesY: ${choicesYsum}`);
     console.log(`Add choicesN: ${choicesNsum}`);
-
-    // console.log(`choicesYsum: ${choicesYsum}, choicesNsum: ${choicesNsum}`);
     
-    // average percentage = divide total Y/N slider values by num of sliders
+    // Calculate average percentage from both Y/N slider values
     let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
     let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     

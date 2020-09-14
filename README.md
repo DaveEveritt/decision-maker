@@ -7,11 +7,12 @@ Because decisions are hard for me, I made this.
 - [ ] branch master in "static", merge textinput into master
 - [ ] enable deletion of reasons
 - [ ] enable swapping wrongly entered reasons between for/not
-- [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] make mobile-first with tabs
+- [ ] replace fieldset h2 with legend and style
 
 ## TO DONE
 
+- [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
 - [x] fix NaN for initial percentages
@@ -24,6 +25,7 @@ Because decisions are hard for me, I made this.
 
 ## FUTURE?
 
+- [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
 
 ---
