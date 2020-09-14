@@ -41,7 +41,8 @@
       if (fornot === "for") choicesY[`range${sliders+1}`] = 5;
       if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
             
-      // show default percentage
+      // show default percentage when first added on Y or N
+      // check Y N sliders instead
       if (sliders <= 2) {
         console.log(choiceN, choiceY);
         if (fornot === "for") choiceY.innerHTML = 50;
@@ -86,25 +87,30 @@
     console.log(`Add choicesY: ${choicesYsum}`);
     console.log(`Add choicesN: ${choicesNsum}`);
 
-    console.log(`choicesYsum: ${choicesYsum}, choicesNsum: ${choicesNsum}`);
+    // console.log(`choicesYsum: ${choicesYsum}, choicesNsum: ${choicesNsum}`);
     
     // average percentage = divide total Y/N slider values by num of sliders
     let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
     let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
+    if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
+    if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
+    
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
+    
+    console.log(`choiceYtotal: ${choiceYtotal}, choiceNtotal: ${choiceNtotal}`);
 
     // Display the overall choice
     if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
       getEl("decision").innerHTML = "Looks like you want to!";
-      getEl("decision").style.color = '#009900';
+      getEl("decision").className = "yes";
     } else if(getEl("choiceY").innerHTML < getEl("choiceN").innerHTML) {
       getEl("decision").innerHTML = "Looks like you don't want to!";
-      getEl("decision").style.color = '#ee6666';
+      getEl("decision").className = "not";
     } else {
       getEl("decision").innerHTML = "Make up your mind!";
-      getEl("decision").style.color = '#333333';
+      getEl("decision").className = "dunno";
     }
   }
 

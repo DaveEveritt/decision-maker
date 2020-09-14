@@ -37,3 +37,12 @@ input[type="range"] {
 #decision {
   text-align: center;
 }
+.yes {
+  color: #009900
+}
+.not {
+  color: #ee6666
+}
+.dunno {
+  color: #333333
+}
