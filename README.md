@@ -4,7 +4,6 @@ Because decisions are hard for me, I made this.
 
 ## TO DO
 
-- [ ] branch master in "static", merge textinput into master
 - [ ] enable deletion of reasons
 - [ ] enable swapping wrongly entered reasons between for/not
 - [ ] make mobile-first with tabs
@@ -12,6 +11,8 @@ Because decisions are hard for me, I made this.
 
 ## TO DONE
 
+- [x] branch master in "static", merge textinput into master
+- [x] delete redundant branches
 - [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
