@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  background: #eef;
+  background: #ccc;
 }
 h1{
   text-align: center;
@@ -25,11 +25,24 @@ fieldset {
 fieldset h2 {
   margin-top: 4px;
 }
+.reasons input {
+  box-sizing: border-box;
+  width: 98%;
+}
 input[type="range"] {
-  width: 74%;
+  width: 92%;
   font-size: 1em;
 	position: relative;
 }
 #decision {
   text-align: center;
+}
+.yes {
+  color: #009900
+}
+.not {
+  color: #ee6666
+}
+.dunno {
+  color: #333333
 }
