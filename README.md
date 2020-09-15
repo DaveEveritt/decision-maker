@@ -8,6 +8,7 @@ Because decisions are hard for me, I made this.
 - [ ] enable swapping wrongly entered reasons between for/not
 - [ ] make mobile-first with tabs
 - [ ] replace fieldset h2 with legend and style
+- [ ] add a question title field
 
 ## TO DONE
 
@@ -24,7 +25,7 @@ Because decisions are hard for me, I made this.
 - [x] add input and handler to enable users to add for/against
 - [x] restrict length of reasons to a reasonable length (110 chars)
 
-## FUTURE?
+## TO FUTURE?
 
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
