@@ -15,18 +15,14 @@
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(e) {
-        addReason();
+        addReason(e);
         e.target.value = "";
       }
     });
   });
 
 // Add reasons as they're input
-  function addReason() {
-    let text = event.target.value || "";
-    let fornot = event.target.id;
-    console.log(`Adding ${fornot} slider`);
-    
+  function addReason(e) {
     
     if (text) {
       // Create new slider HTML and add to DOM
@@ -54,7 +50,7 @@
 
   console.log(getEl(ev).value);
     
-    // OKAY: get number of forReasons and notReasons sliders
+    // gets number of for and not Reasons sliders
     const forReasons = document.querySelectorAll("#forReasons output");
     const notReasons = document.querySelectorAll("#notReasons output");
     
@@ -88,6 +84,7 @@
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
     if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
     
+    // abstract into a function to set choiceY and N, also use in final percent diff
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
