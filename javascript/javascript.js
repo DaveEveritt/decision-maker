@@ -84,7 +84,7 @@
     let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
     let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
-    //  if under 100 .toPrecision(2) gives decimals to 9.99 then an integer
+    //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
     if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toPrecision(2);
     
