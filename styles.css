@@ -1,7 +1,7 @@
 body {
   font-family: sans-serif;
   margin: 0;
-  background: #ccc;
+  background: #cccccc;
 }
 h1{
   text-align: center;
@@ -20,7 +20,7 @@ fieldset {
   max-width: 500px;
   text-align: left;
   padding-left: 6px;
-  background: #eee;
+  background: #eeeeee;
 }
 fieldset h2 {
   margin-top: 4px;
@@ -38,11 +38,11 @@ input[type="range"] {
   text-align: center;
 }
 .yes {
-  color: #40aa40
+  color: #40aa40;
 }
 .not {
-  color: #ee6666
+  color: #ee6666;
 }
 .dunno {
-  color: #333333
+  color: #666666;
 }
