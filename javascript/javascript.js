@@ -15,6 +15,7 @@
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(e) {
+      if (e.keyCode === 13) {
         addReason(e);
         e.target.value = "";
       }
@@ -23,6 +24,8 @@
 
 // Add reasons as they're input
   function addReason(e) {
+    let text = e.target.value || "";
+    let fornot = e.target.id;    
     
     if (text) {
       // Create new slider HTML and add to DOM
@@ -47,8 +50,12 @@
   }
   
   // Displays input range value for the number of sliders...
+  function populate(ev) {
 
   console.log(getEl(ev).value);
+    
+    document.querySelector(`.${ev}`).innerHTML = event.target.value;      
+    let sliderID = ev;
     
     // gets number of for and not Reasons sliders
     const forReasons = document.querySelectorAll("#forReasons output");
@@ -81,8 +88,9 @@
     let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
     let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
-    if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
-    if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
+    //  if under 100 .toPrecision(2) gives decimals to 9.99 then an integer
+    if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
+    if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toPrecision(2);
     
     // abstract into a function to set choiceY and N, also use in final percent diff
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
