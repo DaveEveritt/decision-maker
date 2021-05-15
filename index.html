@@ -5,20 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decision-maker</title>
 	<link rel="stylesheet" href="styles.css">
+  <!-- OGP data -->
+  <meta property="og:title" content="Decision-maker!">
+  <meta property="og:type" content="webapp">
+  <meta property="og:url" content="http://daveeveritt.github.io/decision-maker/">
+  <meta property="og:image" content="http://daveeveritt.github.io/decision-maker/decision-maker.png">
+  <!-- OGP optional data -->
+  <meta property="og:image:alt" content="Example of the decision-maker in use for buying an electric vehicle">
+  <meta property="og:description" content="A minimal aid to making decisions, based on two sets of choices, each ranked"><!-- 155-160 chars -->
+  <meta property="og:locale" content="en_UK">
 </head>
 
 <body>
 
-<h1>Decision-maker</h1>
+<h1 id="question">Decision-maker</h1>
 
 <form action="#" method="#" id="reasons" class="reasons">
   <fieldset>
-    <h2>Reasons for:</h2>
+    <h2>Add reasons for:</h2>
     <label for="for" id="for"></label><input id="for" type="text" maxlength="110">
   </fieldset>
 
   <fieldset>
-    <h2>Reasons against:</h2>
+    <h2>Add reasons against:</h2>
     <label for="not" id="against"></label><input id="not" type="text" maxlength="110">
   </fieldset>
 </form>  

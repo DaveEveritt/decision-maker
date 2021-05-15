@@ -24,6 +24,7 @@ Because decisions are hard for me, I made this.
 - [x] increment numbers on each reason
 - [x] add input and handler to enable users to add for/against
 - [x] restrict length of reasons to a reasonable length (110 chars)
+- [x] add Open Graph Protocol data and image
 
 ## TO FUTURE?
 

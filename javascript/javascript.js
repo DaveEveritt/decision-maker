@@ -110,9 +110,9 @@
   }
 
   // Listen for changes in sliders
-  choices.addEventListener("input", function() {
-    if (event.target.id !== "for" || event.target.id !== "not"){
-      populate(event.target.id);
+  choices.addEventListener("input", function(e) {
+    if (e.target.id !== "for" || e.target.id !== "not"){
+      populate(e.target.id);
     }
   }, false);
 
