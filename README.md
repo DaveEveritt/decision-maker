@@ -6,7 +6,7 @@ Because decisions are hard for me, I made this.
 
 - [ ] enable deletion of reasons
 - [ ] enable swapping wrongly entered reasons between for/not
-- [ ] make mobile-first with tabs
+- [ ] make mobile-first with tabs or slider panes
 - [ ] replace fieldset h2 with legend and style
 - [ ] add a question title field
 
