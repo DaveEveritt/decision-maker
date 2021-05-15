@@ -4,14 +4,15 @@ Because decisions are hard for me, I made this.
 
 ## TO DO
 
-- [ ] enable deletion of reasons
-- [ ] enable swapping wrongly entered reasons between for/not
+- [ ] trap for NaN when only one slider
 - [ ] make mobile-first with tabs or slider panes
-- [ ] replace fieldset h2 with legend and style
-- [ ] add a question title field
+- [ ] provide a question text field to replace 'Decision Maker'
+- [ ] enable deletion of reasons
+- [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 
-## TO DONE
+## DONE
 
+- [x] replace fieldset h2 with legend and style
 - [x] branch master in "static", merge textinput into master
 - [x] delete redundant branches
 - [x] use Y N sliders instead of total sliders (line ~46)
@@ -26,7 +27,7 @@ Because decisions are hard for me, I made this.
 - [x] restrict length of reasons to a reasonable length (110 chars)
 - [x] add Open Graph Protocol data and image
 
-## TO FUTURE?
+## PENDING
 
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
