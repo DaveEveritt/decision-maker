@@ -6,6 +6,7 @@ Because decisions are hard for me, I made this.
 
 - [ ] trap for NaN when only one slider
 - [ ] make mobile-first with tabs or slider panes
+- [ ] store previous choices to laod again
 - [ ] provide a question text field to replace 'Decision Maker'
 - [ ] enable deletion of reasons
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
