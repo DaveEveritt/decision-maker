@@ -33,6 +33,10 @@ Because decisions are hard for me, I made this.
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
 
+## Greame’s suggestion
+
+For the model, remove "for" and "against" to simplify. Just take the average or the weighted average if you add weights (0.0 - 1.0). For the interface, address each individual item in isolation to allow for a clear focus. You can present the summary on a separate page to avoid distraction. All handled via localstorage or similar.
+
 ---
 
 ## Notes
