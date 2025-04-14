@@ -6,9 +6,6 @@ Because decisions are hard for me, I made this.
 
 - [ ] trap for NaN when only one slider
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
-- [ ] make mobile-first with tabs or slider panes
-- [ ] store previous choices to load again
-- [ ] decide on a question text field or none?
 - [ ] enable deletion of reasons
 - [ ] update Open Graph Protocol image
 - [ ] replace `.choices fieldset h2` with legend and style
@@ -23,8 +20,11 @@ Because decisions are hard for me, I made this.
 
 ## PENDING
 
+- [ ] decide on a question text field or none?
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
+- [ ] make mobile-first with tabs or slider panes
+- [ ] store previous choices to load again
 
 ## Greame’s suggestion
 
