@@ -31,7 +31,7 @@
       // Create new slider HTML and add to DOM
       let newSlider = `
       <label>${text}:<br><input type="range" id="range${sliders+1}" max="10" value="5"></label>
-      <output for="range${sliders+1}" class="range${sliders+1}">5</output><br><hr>`
+      <output for="range${sliders+1}" class="range${sliders+1}">5</output><br>`
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
