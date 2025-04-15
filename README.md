@@ -15,7 +15,6 @@ Because decisions are hard for me, I made this.
 - [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
-- [x] clear text input after entry
 - [x] restrict length of reasons to a reasonable length (110 chars)
 
 ## PENDING

@@ -29,10 +29,12 @@ fieldset legend {
   text-align: center;
 }
 .choices label {
-  padding: .75em .25em;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   background: #eee;
+  padding: .75em;
+  min-height: 5.75em;
 }
 .choices fieldset {
   border-radius: 4px;
