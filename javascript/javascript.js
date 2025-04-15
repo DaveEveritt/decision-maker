@@ -30,8 +30,8 @@
     if (text) {
       // Create new slider HTML and add to DOM
       let newSlider = `
-      <label>${text}<br><input type="range" id="range${sliders+1}" max="10" value="5"></label>
-      <output for="range${sliders+1}" class="range${sliders+1}">5</output><br>`
+      <label>${text}<input type="range" id="range${sliders+1}" max="10" value="5"></label>
+      <output for="range${sliders+1}" class="range${sliders+1}">5</output>`
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
@@ -40,10 +40,10 @@
       if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
             
       // Show default percentage when first added on Y or N
-      if (choicesYsum === 0 || choicesNsum === 0) {
-        if (fornot === "for") choiceY.innerHTML = 50;
-        if (fornot === "not") choiceN.innerHTML = 50;
-      }
+      // if (choicesYsum === 0 || choicesNsum === 0) {
+      //   if (fornot === "for") choiceY.innerHTML = 50;
+      //   if (fornot === "not") choiceN.innerHTML = 50;
+      // }
     
       sliders += 1;
     }
@@ -92,18 +92,18 @@
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
-    // overal percentage preference
-    let diff = 0;
-    isNaN(choiceYtotal - choiceNtotal) ? diff = 0 : diff = choiceYtotal - choiceNtotal;
-    choiceYtotal > choiceNtotal ? diff = choiceYtotal : diff = choiceNtotal;
-    diff = choiceYtotal - choiceNtotal;
+    // initialises and sets variable for overall choice percentage
+    let diff = choiceYtotal - choiceNtotal;
     
     // Displays overall choice
-    if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
-      getEl("decision").innerHTML = `I <em>want</em> to! (by ${diff}%)`;
+    if (isNaN(diff)) {
+      getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>use sliders to rank them`;
+      getEl("decision").className = "dunno";
+    } else if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
+      getEl("decision").innerHTML = `I <em>want</em> to by: ${diff}%!`;
       getEl("decision").className = "yes";
     } else if(getEl("choiceY").innerHTML < getEl("choiceN").innerHTML) {
-      getEl("decision").innerHTML = `I <em>don't</em> want to! (by ${diff}%)`;
+      getEl("decision").innerHTML = `I <em>don't</em> want to: by ${diff}%!`;
       getEl("decision").className = "not";
     } else {
       getEl("decision").innerHTML = "Make up your mind!";

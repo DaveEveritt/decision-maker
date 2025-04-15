@@ -34,6 +34,7 @@ fieldset legend {
   justify-content: flex-end;
   background: #eee;
   padding: .75em;
+  margin-bottom: .25em;
   min-height: 5.75em;
 }
 .choices fieldset {
@@ -94,7 +95,7 @@ output {
 }
 #decision {
   text-align: center;
-  margin: 0;
+  margin: 1em 0 0;
 }
 .yes {
   color: #30aa30;

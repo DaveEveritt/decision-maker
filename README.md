@@ -4,7 +4,6 @@ Because decisions are hard for me, I made this.
 
 ## TO DO
 
-- [ ] trap for NaN when only one slider
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 - [ ] enable deletion of reasons
 - [ ] update Open Graph Protocol image
@@ -12,6 +11,7 @@ Because decisions are hard for me, I made this.
 
 ## DONE
 
+- [x] trap for NaN when only one slider
 - [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
