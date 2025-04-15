@@ -67,10 +67,16 @@ fieldset.reason-header label {
   background: #efefef;
 }
 .reasons input:focus-within,
-.reasons input:active,
 .reasons input:active {
   background: #fff;
   border-color: #209920;
+}
+.reasons input::placeholder {
+  color: #666;
+}
+.reasons input:focus-within::placeholder,
+.reasons input:active::placeholder {
+  color: #eee;
 }
 .reasons label {
   border: none;
