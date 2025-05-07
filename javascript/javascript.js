@@ -30,8 +30,8 @@
     if (text) {
       // Create new slider HTML and add to DOM
       let newSlider = `
-      <label>${text}<input type="range" id="range${sliders+1}" max="10" value="5"></label>
-      <output for="range${sliders+1}" class="range${sliders+1}">5</output>`
+      <label>${text}<input type="range" id="range${sliders+1}" max="100" value="50"></label>
+      <output for="range${sliders+1}" class="range${sliders+1}">50</output>`
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
@@ -74,15 +74,15 @@
     
     // function numChoices(whichChoice) {
     //   choicesYsum = sumChoices(whichChoice)
-    //   return choicesYsum / Object.keys(choicesY).length * 10;
+    //   return choicesYsum / Object.keys(choicesY).length * 2;
     // }
     
     choicesNsum = sumChoices(choicesN);
     choicesYsum = sumChoices(choicesY);
     
     // Calculate average percentage from both Y/N slider values
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 20;
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 20;
+    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 2;
+    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 2;
     
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
