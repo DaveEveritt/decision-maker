@@ -1,7 +1,17 @@
+:root {
+  --background: #ccc;
+  --background2: #efefef;
+  --accent1: #eee;
+  --accent2: #555;
+  --contrast: #fff;
+  --contrast2: #999;
+  --pros: #209920;
+  --cons: #e44;
+}
 body {
   font-family: sans-serif;
   margin: 0;
-  background: #ccc;
+  background: var(--background);
 }
 h1{
   text-align: center;
@@ -20,10 +30,10 @@ fieldset {
   width: 48%;
   max-width: 500px;
   text-align: left;
-  background: #eee;
+  background: var(--accent1);
 }
 fieldset legend {
-  background: #eee;
+  background: var(--accent1);
   font-size: 1.25em;
   padding: .25em .5em 0;
   text-align: center;
@@ -32,13 +42,12 @@ fieldset legend {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: #eee;
+  background: var(--accent1);
   padding: .75em;
   margin-bottom: .25em;
   min-height: 5.75em;
 }
 .choices fieldset {
-  border-radius: 4px;
   border-radius: 4px;
   background: transparent;
   padding: 0;
@@ -65,21 +74,25 @@ fieldset.reason-header label {
   width: 100%;
   font-size: 1em;
   padding: .5em .25em;
-  border: 3px solid #999;
+  border: 3px solid var(--contrast2);
   outline: none;
-  background: #efefef;
+  background: var(--background2);
 }
 .reasons input:focus-within,
 .reasons input:active {
-  background: #fff;
-  border-color: #209920;
+  background: var(--contrast);
+  border-color: var(--pros);
+}
+.reasons #not:focus-within,
+.reasons #not:active {
+  border-color: var(--cons);
 }
 .reasons input::placeholder {
-  color: #666;
+  color: var(--accent2);
 }
 .reasons input:focus-within::placeholder,
 .reasons input:active::placeholder {
-  color: #eee;
+  color: var(--accent1);
 }
 .reasons label {
   border: none;
@@ -97,12 +110,6 @@ output {
   text-align: center;
   margin: 1em 0 0;
 }
-.yes {
-  color: #30aa30;
-}
-.not {
-  color: #ee6666;
-}
-.dunno {
-  color: #666666;
-}
+.yes { color: var(--pros); }
+.not { color: var(--cons); }
+.dunno { color: var(--accent2); }
