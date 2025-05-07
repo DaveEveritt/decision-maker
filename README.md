@@ -4,10 +4,11 @@ Because decisions are hard for me, I made this.
 
 ## TO DO
 
+- [ ] replace `.choices fieldset h2` with legend and style
+- [ ] highlight (glow?) slider to hint changing default
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 - [ ] enable deletion of reasons
 - [ ] update Open Graph Protocol image
-- [ ] replace `.choices fieldset h2` with legend and style
 
 ## DONE
 
@@ -22,7 +23,6 @@ Because decisions are hard for me, I made this.
 - [ ] decide on a question text field or none?
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use a component for list items
-- [ ] make mobile-first with tabs or slider panes
 - [ ] store previous choices to load again
 
 ## Greame’s suggestion
