@@ -36,8 +36,8 @@
       reason.insertAdjacentHTML("afterend", newSlider);
       
       // Add new slider to choices object with default value
-      if (fornot === "for") choicesY[`range${sliders+1}`] = 5;
-      if (fornot === "not") choicesN[`range${sliders+1}`] = 5;
+      if (fornot === "for") choicesY[`range${sliders+1}`] = 0;
+      if (fornot === "not") choicesN[`range${sliders+1}`] = 0;
             
       // Show default percentage when first added on Y or N
       // if (choicesYsum === 0 || choicesNsum === 0) {
@@ -72,17 +72,17 @@
       return Object.values(choices).reduce((a, b) => a + b, 0);
     }
     
-    function numChoices(whichChoice) {
-      choicesYsum = sumChoices(whichChoice)
-      return choicesYsum / Object.keys(choicesY).length * 10;
-    }
+    // function numChoices(whichChoice) {
+    //   choicesYsum = sumChoices(whichChoice)
+    //   return choicesYsum / Object.keys(choicesY).length * 10;
+    // }
     
     choicesNsum = sumChoices(choicesN);
     choicesYsum = sumChoices(choicesY);
     
     // Calculate average percentage from both Y/N slider values
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
+    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 20;
+    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 20;
     
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
