@@ -22,7 +22,7 @@
     });
   });
 
-// Add reasons as they're input
+  // Add reasons as they're input
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
@@ -30,8 +30,8 @@
     if (text) {
       // Create new slider HTML and add to DOM
       let newSlider = `
-      <label>${text}<input type="range" id="range${sliders+1}" max="100" value="50"></label>
-      <output for="range${sliders+1}" class="range${sliders+1}">50</output>`
+      <label>${text}<input type="range" id="range${sliders+1}" max="10" value="0"></label>
+      <output for="range${sliders+1}" class="range${sliders+1}">0</output>`
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
@@ -40,10 +40,10 @@
       if (fornot === "not") choicesN[`range${sliders+1}`] = 0;
             
       // Show default percentage when first added on Y or N
-      // if (choicesYsum === 0 || choicesNsum === 0) {
-      //   if (fornot === "for") choiceY.innerHTML = 50;
-      //   if (fornot === "not") choiceN.innerHTML = 50;
-      // }
+      if (choicesYsum === 0 || choicesNsum === 0) {
+        if (fornot === "for") choiceY.innerHTML = 0;
+        if (fornot === "not") choiceN.innerHTML = 0;
+      }
     
       sliders += 1;
     }
@@ -72,18 +72,14 @@
       return Object.values(choices).reduce((a, b) => a + b, 0);
     }
     
-    // function numChoices(whichChoice) {
-    //   choicesYsum = sumChoices(whichChoice)
-    //   return choicesYsum / Object.keys(choicesY).length * 2;
-    // }
-    
     choicesNsum = sumChoices(choicesN);
     choicesYsum = sumChoices(choicesY);
     
     // Calculate average percentage from both Y/N slider values
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 2;
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 2;
-    
+    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 40 / 2;
+    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 40 / 2;
+    console.log(`Y tot: ${choicesYsum / Object.keys(choicesY).length}`, `N tot: ${choicesNsum / Object.keys(choicesN).length}`);
+
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
     if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toPrecision(2);
