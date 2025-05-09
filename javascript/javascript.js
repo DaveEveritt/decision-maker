@@ -4,7 +4,7 @@
 
   // Helper functions and setup:
   const getEl = (el) => { return document.getElementById(el) };
-  // count number of sliders to assign unique IDs
+  // Hold number of sliders to assign unique IDs
   let sliders = 0;
   const choicesY = {};
   const choicesN = {};
@@ -71,15 +71,15 @@
     function sumChoices(choices) {
       return Object.values(choices).reduce((a, b) => a + b, 0);
     }
-    
-    choicesNsum = sumChoices(choicesN);
     choicesYsum = sumChoices(choicesY);
+    choicesNsum = sumChoices(choicesN);
     
-    // Calculate average percentage from both Y/N slider values
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 40 / 2;
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 40 / 2;
-    console.log(`Y tot: ${choicesYsum / Object.keys(choicesY).length}`, `N tot: ${choicesNsum / Object.keys(choicesN).length}`);
-
+    // Calculates average percentage from both Y/N slider values:
+    let choiceYtotal = sumChoices(choicesY)*10 / forReasons.length;
+    let choiceNtotal = sumChoices(choicesN)*10 / notReasons.length;
+    // let choiceYtotal = choicesYsum / Object.keys(choicesY).length / 2 * 40;
+    // let choiceNtotal = choicesNsum / Object.keys(choicesN).length / 2 * 40;
+    
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
     if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toPrecision(2);
@@ -88,18 +88,33 @@
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
+    // ALSO Calculates average percentage from both Y/N slider values:
+    let sliderval = [];
+    function sumSliders(proORcon) {
+      for(var i = proORcon; i > 0; i-=1) {
+        sliderval += getEl(`range${i}`).value;
+        return sliderval * proORcon;
+      }
+      sliderval = 0;
+    }
+    console.log(sumSliders(forReasons.length));
+    console.log(sumSliders(notReasons.length));
+    let diff = sumSliders(forReasons.length) - sumSliders(notReasons.length);
     // initialises and sets variable for overall choice percentage
-    let diff = choiceYtotal - choiceNtotal;
+    // let diff = choiceYtotal - choiceNtotal;
+    
     
     // Displays overall choice
     if (isNaN(diff)) {
-      getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>use sliders to rank them`;
+      getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
     } else if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
-      getEl("decision").innerHTML = `I <em>want</em> to by: ${diff}%!`;
+      getEl("decision").innerHTML = `I <em>want</em> to by: ${sumSliders(forReasons.length)}%!`;
+      // getEl("decision").innerHTML = `I <em>want</em> to by: ${diff}%!`;
       getEl("decision").className = "yes";
     } else if(getEl("choiceY").innerHTML < getEl("choiceN").innerHTML) {
-      getEl("decision").innerHTML = `I <em>don't</em> want to: by ${diff}%!`;
+      getEl("decision").innerHTML = `I <em>don't</em> want to: by ${sumSliders(notReasons.length)}%!`;
+      // getEl("decision").innerHTML = `I <em>don't</em> want to: by ${-diff}%!`;
       getEl("decision").className = "not";
     } else {
       getEl("decision").innerHTML = "Make up your mind!";
