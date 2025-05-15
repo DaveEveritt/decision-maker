@@ -1,17 +1,41 @@
 "use strict";
 
 (function () {
-
-  // Helper functions and setup:
+  
+  // ----------------------------------------------------------
+  // HELPER FUNCTION: GETS SINGLE ELEMENT BY ID
+  
   const getEl = (el) => { return document.getElementById(el) };
-  // Hold number of sliders to assign unique IDs
+  
+
+  // ----------------------------------------------------------
+  // HELPER FUNCTION: TO GET MULTIPLE input:range ELEMENTS BY ID
+
+  const getElemsById = function(ids) {
+    if(ids === undefined || (typeof ids !== 'object') || (ids.length === 0)) {
+      alert('Expecting an array based parameter, or no ids given, exiting');
+  		return null;
+  	}  
+  	for(var i = 0; i < ids.length; i++) {
+      elems[i] = document.getElementById(ids[i]);
+  	}  
+  	return ids;
+  };  
+  
+
+  // ----------------------------------------------------------
+  // INITIALIZES VARIABLES
+
   let sliders = 0;
   const choicesY = {};
   const choicesN = {};
   let choicesYsum = 0;
   let choicesNsum = 0;
 
-  // Listen for users to input text and hit "return"
+
+  // ----------------------------------------------------------
+  // LISTENS FOR USERS TO INPUT TEXT AND HIT "RETURN"
+
   const reasons = document.querySelectorAll("#reasons input");
   reasons.forEach(el => {
     el.addEventListener("keyup", function(e) {
@@ -21,16 +45,18 @@
       }
     });
   });
+  
 
-  // Add reasons as they're input
+  // ----------------------------------------------------------
+  // ADDS REASON TO DOM (INPUT:RANGE ELEMENT) AS IT’S INPUT
+
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
     
     if (text) {
-      // Create new slider HTML and add to DOM
       let newSlider = `
-      <label>${text}<input type="range" id="range${sliders+1}" max="10" value="0"></label>
+      <label>${text}<input type="range" id="range${sliders+1}" max="100" value="0"></label>
       <output for="range${sliders+1}" class="range${sliders+1}">0</output>`
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
@@ -38,18 +64,21 @@
       // Add new slider to choices object with default value
       if (fornot === "for") choicesY[`range${sliders+1}`] = 0;
       if (fornot === "not") choicesN[`range${sliders+1}`] = 0;
-            
+      
       // Show default percentage when first added on Y or N
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0;
         if (fornot === "not") choiceN.innerHTML = 0;
       }
-    
+      
       sliders += 1;
     }
-  }
+  } // END addReason()
   
-  // Displays input range value for the number of sliders...
+  
+  // ----------------------------------------------------------
+  // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
+
   function populate(ev) {
     Event.innerHTML = ev.target.value;      
     
@@ -71,12 +100,13 @@
     function sumChoices(choices) {
       return Object.values(choices).reduce((a, b) => a + b, 0);
     }
+    
     choicesYsum = sumChoices(choicesY);
     choicesNsum = sumChoices(choicesN);
     
-    // Calculates average percentage from both Y/N slider values:
-    let choiceYtotal = sumChoices(choicesY)*10 / forReasons.length;
-    let choiceNtotal = sumChoices(choicesN)*10 / notReasons.length;
+    // CALCULATES AVERAGE PERCENTAGE FROM BOTH Y/N SLIDER VALUES:
+    let choiceYtotal = sumChoices(choicesY)  / forReasons.length;
+    let choiceNtotal = sumChoices(choicesN)  / notReasons.length;
     // let choiceYtotal = choicesYsum / Object.keys(choicesY).length / 2 * 40;
     // let choiceNtotal = choicesNsum / Object.keys(choicesN).length / 2 * 40;
     
@@ -84,11 +114,11 @@
     if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toPrecision(2);
     if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toPrecision(2);
     
-    // abstract into a function to set choiceY and N, also use in final percent diff
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
-    
-    // ALSO Calculates average percentage from both Y/N slider values:
+
+
+    // CALCULATES AVERAGE PERCENTAGE FROM BOTH Y/N SLIDER VALUES:
     let sliderval = [];
     function sumSliders(proORcon) {
       for(var i = proORcon; i > 0; i-=1) {
@@ -97,14 +127,12 @@
       }
       sliderval = 0;
     }
-    console.log(sumSliders(forReasons.length));
-    console.log(sumSliders(notReasons.length));
-    let diff = sumSliders(forReasons.length) - sumSliders(notReasons.length);
-    // initialises and sets variable for overall choice percentage
-    // let diff = choiceYtotal - choiceNtotal;
+
+    // GETS DIFFERENCE BETWEEN PROS AND CONS
+    let diff = choiceYtotal - choiceNtotal;
+
     
-    
-    // Displays overall choice
+    // DISPLAYS OVERALL CHOICE
     if (isNaN(diff)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
@@ -120,13 +148,27 @@
       getEl("decision").innerHTML = "Make up your mind!";
       getEl("decision").className = "dunno";
     }
-  }
 
-  // Listens for changes in sliders
+
+  }
+  
+  
+  // ----------------------------------------------------------
+  // LISTENS FOR CHANGES IN SLIDERS
+
   choices.addEventListener("input", function(e) {
     if (e.target.id !== "for" || e.target.id !== "not"){
       populate(e);
     }
   }, false);
+
+
+  // OLDER CODE ----------------------------------------:
+ 
+  // REPLACE elems WITH LIST OF input:range ELEMENTS
+  
+  // let elems = ["choices","choice1","choice2","decision"];
+  // getElemsById(elems);
+
 
 })();
