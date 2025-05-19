@@ -1,15 +1,15 @@
 # Decision maker
 
-Because decisions are hard for me, I made this.
+Because decisions are hard, I made this.
 
 ## TO DO
 
 - [ ] fix duplicate IDs in pro/con choices
 - [ ] replace `.choices fieldset h2` with legend and style
-- [ ] highlight (glow?) slider to hint changing default
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 - [ ] enable deletion of reasons
 - [ ] update Open Graph Protocol image
+- [ ] use `template`/`slot` for list items
 
 ## DONE
 
@@ -19,16 +19,15 @@ Because decisions are hard for me, I made this.
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
 - [x] restrict length of reasons to a reasonable length (110 chars)
 
-## PENDING
+## PENDING OPTIONS
 
-- [ ] decide on a question text field or none?
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
-- [ ] use a component for list items
-- [ ] store previous choices to load again
+- [ ] name and store previous choices to load again
+- [ ] hint to change default by highlighting (glow?) slider button
 
-## Greame’s suggestion
+<!-- ## Greame’s suggestion
 
-For the model, remove "for" and "against" to simplify. Just take the average or the weighted average if you add weights (0.0 - 1.0). For the interface, address each individual item in isolation to allow for a clear focus. You can present the summary on a separate page to avoid distraction. All handled via localstorage or similar.
+For the model, remove "for" and "against" to simplify. Just take the average or the weighted average if you add weights (0.0 - 1.0). For the interface, address each individual item in isolation to allow for a clear focus. You can present the summary on a separate page to avoid distraction. All handled via localstorage or similar. -->
 
 ---
 
