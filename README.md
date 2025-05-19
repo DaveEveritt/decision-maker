@@ -5,6 +5,7 @@ Because decisions are hard, I made this.
 ## TO DO
 
 - [ ] fix duplicate IDs in pro/con choices
+- [ ] replace `event` with `e`
 - [ ] replace `.choices fieldset h2` with legend and style
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 - [ ] enable deletion of reasons

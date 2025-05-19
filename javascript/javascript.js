@@ -57,6 +57,7 @@
     }
   } // END addReason()
   
+
   // ----------------------------------------------------------
   // ADDS UP THE VALUES OF PRO AND CON CHOICES
   function sumChoices(choices) {
@@ -66,25 +67,25 @@
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
-  function populate() {
+  function populate(e) {
 
-    document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
-    let sliderID = event.target.id;
+    document.querySelector(`.${e.target.id}`).innerHTML = e.target.value;      
+    let sliderID = e.target.id;
     
     // gets number of forReasons and notReasons sliders
     const forReasons = document.querySelectorAll("#forReasons output");
     const notReasons = document.querySelectorAll("#notReasons output");
     
     // check if slider is "pro" or "con"
-    let forOrNot = event.target.parentElement.parentElement.id;
+    let forOrNot = e.target.parentElement.parentElement.id;
     
     // Add slider ID and value to "pro" or "con" sliders
     if (forReasons.length > 0 && forOrNot === "forReasons") {
-      choicesY[sliderID] = parseInt(event.target.value);
+      choicesY[sliderID] = parseInt(e.target.value);
       // console.log(`Adjusting value of 'yes' slider ${sliderID}`);
     }
     if (notReasons.length > 0 && forOrNot === "notReasons") {
-      choicesN[sliderID] = parseInt(event.target.value);
+      choicesN[sliderID] = parseInt(e.target.value);
       // console.log(`Adjusting value of 'not' slider ${sliderID}`);
     }
     // console.log("PRO:", choicesY, "CON:", choicesN);
