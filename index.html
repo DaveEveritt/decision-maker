@@ -24,31 +24,27 @@
 <form action="#" method="#" id="reasons" class="reasons">
   <fieldset class="reason-header">
   <legend>PROS</legend>
-    <label for="for" id="pros"></label>
+    <label for="for" id="for"></label>
     <input id="for" type="text" maxlength="110" enterkeyhint="done" placeholder="Pros: add reason">
   </fieldset>
 
   <fieldset class="reason-header">
   <legend>CONS</legend>
-    <label for="not" id="cons"></label>
+    <label for="not" id="against"></label>
     <input id="not" type="text" maxlength="110" enterkeyhint="done" placeholder="Cons: add reason">
   </fieldset>
 </form>  
 
-<p class="instruction">Adjust sliders to rate each pro and con…<br>WARNING WIP: calculations incorrect!</p>
+<p class="instruction">Adjust sliders to rate each pro and con…</p>
 
 <form action="#" method="#" id="choices" class="choices">
   <fieldset id="forReasons">
-    <h2>Average&nbsp;Pros: <span id="choiceY"></span>%</h2>
-
-    <!-- reasons user adds here -->
+    <h2>Average pros: <span id="choiceY"></span>%</h2>
     
   </fieldset>
   
   <fieldset id="notReasons">
-    <h2>Average&nbsp;Cons: <span id="choiceN"></span>%</h2>
-    
-    <!-- reasons user adds here -->
+    <h2>Average cons: <span id="choiceN"></span>%</h2>
 
   </fieldset>
 </form>

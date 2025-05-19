@@ -4,6 +4,7 @@ Because decisions are hard for me, I made this.
 
 ## TO DO
 
+- [ ] fix duplicate IDs in pro/con choices
 - [ ] replace `.choices fieldset h2` with legend and style
 - [ ] highlight (glow?) slider to hint changing default
 - [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
