@@ -31,6 +31,7 @@
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
+    const proORcon = fornot == "for" ? `pro${sliders+1}` : `con${sliders+1}`;
     // console.log(`Adding ${fornot} slider`);
     
     
@@ -38,15 +39,19 @@
       // Creates new slider HTML and adds to DOM
       // FIX: FOR AND NOT HAVE SAME ID
       let newSlider = `
-      <label for="reason${sliders+1}">${text}<input type="range" id="reason${sliders+1}" max="10" value="0">
-      <output for="reason${sliders+1}" class="reason${sliders+1}">0</output></label>`
+      <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
+      <output for="${proORcon}" class="${proORcon}">0</output></label>`
+      
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
+      
       reason.insertAdjacentHTML("afterend", newSlider);
       
       // Add new slider to choices object with default value
-      if (fornot === "for") choicesY[`reason${sliders+1}`] = 0;
-      if (fornot === "not") choicesN[`reason${sliders+1}`] = 0;
+      // if (fornot === "for") choicesY[`pro${sliders+1}`] = 0;
+      // if (fornot === "not") choicesN[`con${sliders+1}`] = 0;
             
+      // console.log(choicesYsum, choicesNsum)
+
       // Show default percentage when first added on Y or N
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0;
@@ -67,25 +72,32 @@
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
-  function populate() {
+  function populate(choiceID) {
+    document.querySelector(`.${choiceID}`).innerHTML = choiceID.value;      
+    let sliderID = choiceID;
 
-    document.querySelector(`.${event.target.id}`).innerHTML = event.target.value;      
-    let sliderID = event.target.id;
+    // console.dir(parseInt(choiceID.value));
+    // console.log(choiceID, choiceID.value, sliderID);
     
     // gets number of forReasons and notReasons sliders
     const forReasons = document.querySelectorAll("#forReasons output");
     const notReasons = document.querySelectorAll("#notReasons output");
     
     // check if slider is "pro" or "con"
-    let forOrNot = event.target.parentElement.parentElement.id;
+    let procon = getEl(choiceID);
+    let forOrNot = procon.parentElement.parentElement.id;
+
+    // console.log(forOrNot, forReasons.length );
     
     // Add slider ID and value to "pro" or "con" sliders
     if (forReasons.length > 0 && forOrNot === "forReasons") {
-      choicesY[sliderID] = parseInt(event.target.value);
+      // console.log(parseInt(choiceID));
+      choicesY[sliderID] = parseInt(choiceID.value);
       // console.log(`Adjusting value of 'yes' slider ${sliderID}`);
     }
     if (notReasons.length > 0 && forOrNot === "notReasons") {
-      choicesN[sliderID] = parseInt(event.target.value);
+      // console.log(parseInt(choiceID.value));
+      choicesN[sliderID] = parseInt(choiceID.value);
       // console.log(`Adjusting value of 'not' slider ${sliderID}`);
     }
     // console.log("PRO:", choicesY, "CON:", choicesN);
@@ -124,12 +136,23 @@
     }
   } // END populate()
 
+
   // ----------------------------------------------------------
-  // LISTENS FOR CHANGES IN SLIDERS
+  // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
   choices.addEventListener("input", function(e) {
-    if (e.target.id !== "for" || e.target.id !== "not"){
-      populate(e.target.id);
-    }
+    const [...pro] = document.querySelectorAll('[id^="pro"]');
+    const [...con] = document.querySelectorAll('[id^="con"]');
+    const procon = con.concat(pro);
+    const proconMap = procon.map(p => p.value);
+    const ourDict = {};
+    
+    console.log(ourDict);
+    
+    procon.forEach((pc,i) => {
+      ourDict[pc.id] = proconMap[i];
+    });
+
+    populate(procon);
   }, false);
 
 })();
