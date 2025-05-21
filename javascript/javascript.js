@@ -72,9 +72,18 @@
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
-  function populate(choiceID) {
-    document.querySelector(`.${choiceID}`).innerHTML = choiceID.value;      
-    let sliderID = choiceID;
+  function populate(choices) {
+    console.log(choices);
+    let sliderID;
+    
+    choices.forEach(ch => {
+      console.log(ch.val);
+      sliderID = ch.id;
+      document.querySelector(`.${sliderID}`).innerHTML = ch.val;      
+
+
+    });
+
 
     // console.dir(parseInt(choiceID.value));
     // console.log(choiceID, choiceID.value, sliderID);
@@ -144,15 +153,20 @@
     const [...con] = document.querySelectorAll('[id^="con"]');
     const procon = con.concat(pro);
     const proconMap = procon.map(p => p.value);
-    const ourDict = {};
+    const ourDict = [];
     
-    console.log(ourDict);
-    
+    // console.log(ourDict);
+
     procon.forEach((pc,i) => {
-      ourDict[pc.id] = proconMap[i];
+      // console.log(pc.id, i, proconMap[i]);
+      const tmp = {};
+      tmp['id'] = pc.id;
+      tmp['val'] = proconMap[i];
+      ourDict.push(tmp);
+      // console.log(ourDict);
     });
 
-    populate(procon);
+    populate(ourDict);
   }, false);
 
 })();
