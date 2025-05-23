@@ -69,7 +69,6 @@
     return Object.values(choices).reduce((a, b) => a + b, 0);
   }
 
-
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
@@ -106,6 +105,14 @@
     allProCons(allCons);
     console.log(sumPros, sumCons);
 
+    let totalPros = sumPros.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue
+    },0);
+    let totalCons = sumCons.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue
+    },0);
+    console.log(totalPros, totalCons);
+
 
     // OKAY TO HERE ================================================
 
@@ -123,7 +130,7 @@
     
     // TO DO ========================================================
 
-    // sum values of PRO and CON to calculate average of each
+    // calculate average of PROs and CONs
 
     // make into percentage and populate choiceY and choiceN
 
