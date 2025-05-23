@@ -62,59 +62,64 @@
     }
   } // END addReason()
   
-  
+  // ORIGINALLY SUMMED CHOICES from choicesY and N
   // ----------------------------------------------------------
   // ADDS UP THE VALUES OF PRO AND CON CHOICES
   function sumChoices(choices) {
     return Object.values(choices).reduce((a, b) => a + b, 0);
   }
+      // let allPros;
+      // console.log(ch.val);
+      // allPros += ch.val;
+      // return allPros;
+
+    // let proSum = [], conSum = [];
+
+    // const sumPros = (chs) => {
+    //   let allPros;
+    //   chs.forEach(ch => {
+    //     allPros += chs.val;
+    //   });
+    //   return allPros;
+    // };
+    // console.log(allProVals);
+
+
+    // console.log(choices.filter(choice => choice.id.startsWith("pro")).val, choices.filter(choice => choice.id.startsWith("con")).val); // NaN??
 
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
-    console.log(choices);
+
     let sliderID;
-    
+    let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
+    let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
+    let sumAll = [], sumPros, sumCons;
+
+    // console.log(numPros, numCons);
+
     choices.forEach(ch => {
-      console.log(ch.val);
       sliderID = ch.id;
-      document.querySelector(`.${sliderID}`).innerHTML = ch.val;      
-
-
+      document.querySelector(`.${sliderID}`).innerHTML = ch.val;
+      sumAll.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
     });
+    console.log(sumAll);
+    // DAVE GOT HERE
+
+    // TO DO ================================================
+
+    // sum values of PRO and CON to calculate average of each
+
+    // make into percentage and populate choiceY and choiceN
+
+    // compare averages PROs and CONs to see which is greater
+
+    // populate overall choice message
 
 
-    // console.dir(parseInt(choiceID.value));
-    // console.log(choiceID, choiceID.value, sliderID);
-    
-    // gets number of forReasons and notReasons sliders
-    const forReasons = document.querySelectorAll("#forReasons output");
-    const notReasons = document.querySelectorAll("#notReasons output");
-    
-    // check if slider is "pro" or "con"
-    let procon = getEl(choiceID);
-    let forOrNot = procon.parentElement.parentElement.id;
-
-    // console.log(forOrNot, forReasons.length );
-    
-    // Add slider ID and value to "pro" or "con" sliders
-    if (forReasons.length > 0 && forOrNot === "forReasons") {
-      // console.log(parseInt(choiceID));
-      choicesY[sliderID] = parseInt(choiceID.value);
-      // console.log(`Adjusting value of 'yes' slider ${sliderID}`);
-    }
-    if (notReasons.length > 0 && forOrNot === "notReasons") {
-      // console.log(parseInt(choiceID.value));
-      choicesN[sliderID] = parseInt(choiceID.value);
-      // console.log(`Adjusting value of 'not' slider ${sliderID}`);
-    }
-    // console.log("PRO:", choicesY, "CON:", choicesN);
-    
     choicesYsum = sumChoices(choicesY);
     choicesNsum = sumChoices(choicesN);
-    // console.log(`Add choicesY: ${choicesYsum}`);
-    // console.log(`Add choicesN: ${choicesNsum}`);
     
     // calculates average percentage from both y/n slider values:
     let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
@@ -127,7 +132,6 @@
     isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
     isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
-    // console.log(`choiceYtotal: ${choiceYtotal}, choiceNtotal: ${choiceNtotal}`);
 
     // displays overall choice
     if (isNaN(choiceYtotal) || isNaN(choiceNtotal)) {
