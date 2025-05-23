@@ -68,24 +68,6 @@
   function sumChoices(choices) {
     return Object.values(choices).reduce((a, b) => a + b, 0);
   }
-      // let allPros;
-      // console.log(ch.val);
-      // allPros += ch.val;
-      // return allPros;
-
-    // let proSum = [], conSum = [];
-
-    // const sumPros = (chs) => {
-    //   let allPros;
-    //   chs.forEach(ch => {
-    //     allPros += chs.val;
-    //   });
-    //   return allPros;
-    // };
-    // console.log(allProVals);
-
-
-    // console.log(choices.filter(choice => choice.id.startsWith("pro")).val, choices.filter(choice => choice.id.startsWith("con")).val); // NaN??
 
 
   // ----------------------------------------------------------
@@ -95,19 +77,51 @@
     let sliderID;
     let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
     let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
-    let sumAll = [], sumPros, sumCons;
+    let allPros = choices.filter(ch => ch.id.startsWith("pro"));
+    let allCons = choices.filter(ch => ch.id.startsWith("con"));
+    let sumAll = [], sumPros = [], sumCons = [];
 
-    // console.log(numPros, numCons);
 
+    // SETS INPUT OUTPUT VALUE FOR SLIDERS
     choices.forEach(ch => {
       sliderID = ch.id;
       document.querySelector(`.${sliderID}`).innerHTML = ch.val;
-      sumAll.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
+      // sumAll.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
     });
-    console.log(sumAll);
-    // DAVE GOT HERE
+    // console.log(sumAll);
 
-    // TO DO ================================================
+
+    // GATHERS ALL PRO AND CON VALUES IN AN ARRAY
+    const allProCons = (proORcon => {
+      proORcon.forEach(pORc => {
+        sliderID = pORc.id;
+        if (pORc.id.startsWith("pro")){
+          sumPros.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = pORc.val));
+        } else if (pORc.id.startsWith("con")){
+          sumCons.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = pORc.val));
+        }
+      });
+    });
+    allProCons(allPros);
+    allProCons(allCons);
+    console.log(sumPros, sumCons);
+
+
+    // OKAY TO HERE ================================================
+
+
+    // THESE TWO WORK BUT NOW GENERALISED INTO "allProCons":
+    // allPros.forEach(ch => {
+    //   sliderID = ch.id;
+    //   sumPros.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
+    // });
+    // allCons.forEach(ch => {
+    //   sliderID = ch.id;
+    //   sumCons.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
+    // });
+    // console.log(sumPros, sumCons);
+    
+    // TO DO ========================================================
 
     // sum values of PRO and CON to calculate average of each
 
