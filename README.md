@@ -5,9 +5,8 @@ Because decisions are hard, I made this.
 ## TO DO
 
 - [ ] fix duplicate IDs in pro/con choices
-- [ ] replace `event` with `e`
+- [ ] fix opposite choice message if all pro or con are 100%
 - [ ] replace `.choices fieldset h2` with legend and style
-- [ ] untangle and abstract choiceYtotal and choiceNtotal calculations
 - [ ] enable deletion of reasons
 - [ ] update Open Graph Protocol image
 - [ ] use `template`/`slot` for list items

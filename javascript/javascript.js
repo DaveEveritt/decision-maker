@@ -9,8 +9,8 @@
   // ----------------------------------------------------------
   // INITIALIZES VARIABLES
   let sliders = 0;
-  const choicesY = {};
-  const choicesN = {};
+  let pros = getEl("choiceY");
+  let cons = getEl("choiceN");
   let choicesYsum = 0;
   let choicesNsum = 0;
 
@@ -43,15 +43,8 @@
       <output for="${proORcon}" class="${proORcon}">0</output></label>`
       
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
-      
       reason.insertAdjacentHTML("afterend", newSlider);
       
-      // Add new slider to choices object with default value
-      // if (fornot === "for") choicesY[`pro${sliders+1}`] = 0;
-      // if (fornot === "not") choicesN[`con${sliders+1}`] = 0;
-            
-      // console.log(choicesYsum, choicesNsum)
-
       // Show default percentage when first added on Y or N
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0;
@@ -62,8 +55,7 @@
     }
   } // END addReason()
   
-  // ORIGINALLY SUMMED CHOICES from choicesY and N
-  // ----------------------------------------------------------
+
   // ADDS UP THE VALUES OF PRO AND CON CHOICES
   function sumChoices(choices) {
     return Object.values(choices).reduce((a, b) => a + b, 0);
@@ -79,17 +71,14 @@
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
-    let sumAll = [], sumPros = [], sumCons = [];
+    let sumPros = [], sumCons = [];
 
 
     // SETS INPUT OUTPUT VALUE FOR SLIDERS
     choices.forEach(ch => {
       sliderID = ch.id;
       document.querySelector(`.${sliderID}`).innerHTML = ch.val;
-      // sumAll.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
-      // console.log(parseInt(ch.val));
     });
-    // console.log(sumAll);
 
 
     // GATHERS ALL PRO AND CON VALUES IN AN ARRAY
@@ -114,19 +103,14 @@
     let totalCons = sumCons.reduce((accumulator, currentValue) => {
       return accumulator + currentValue
     },0);
-    console.log(totalPros, totalCons);
     
 
     //CALCULATES AVERAGE PRO AND CON VALUES
     avPros = ((totalPros / numPros) * 10).toFixed(2);
     avCons = ((totalCons / numCons) * 10).toFixed(2);
     
-    console.log(avPros, avCons);
-    
     
     //POPULATE INTERFACE WITH AVERAGE PRO AND CON VALUES
-    let pros = getEl("choiceY");
-    let cons = getEl("choiceN");
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
     
@@ -134,30 +118,10 @@
     
     // OKAY TO HERE ================================================
 
-    // THESE TWO WORK BUT NOW GENERALISED INTO "allProCons":
-    // allPros.forEach(ch => {
-    //   sliderID = ch.id;
-    //   sumPros.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
-    // });
-    // allCons.forEach(ch => {
-    //   sliderID = ch.id;
-    //   sumCons.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
-    // });
-    // console.log(sumPros, sumCons);
-    
     // TO DO ========================================================
 
-    // compare averages PROs and CONs to see which is greater
+    // fix opposite choice message if one total is 100%
 
-    // populate overall choice message
-
-
-    // choicesYsum = sumChoices(choicesY);
-    // choicesNsum = sumChoices(choicesN);
-    
-    // calculates average percentage from both y/n slider values:
-    // let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
-    // let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
@@ -168,7 +132,7 @@
     
 
     // displays overall choice
-    if (isNaN(choiceYtotal) || isNaN(choiceNtotal)) {
+    if (isNaN(avPros) || isNaN(avCons)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
     } else if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
