@@ -118,17 +118,17 @@
     
     // OKAY TO HERE ================================================
 
+
     // TO DO ========================================================
 
-    // fix opposite choice message if one total is 100%
+    // - fix opposite choice message if one total is 100%
+    // - fix duplicate slider IDs
+    // - check if below gives percentage decimal points
 
     
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
     // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
-    
-    // isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
-    // isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
 
     // displays overall choice
