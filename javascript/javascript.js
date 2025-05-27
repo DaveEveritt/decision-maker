@@ -78,6 +78,7 @@
     let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
+    let avPros = 0, avCons = 0;
     let sumAll = [], sumPros = [], sumCons = [];
 
 
@@ -86,6 +87,7 @@
       sliderID = ch.id;
       document.querySelector(`.${sliderID}`).innerHTML = ch.val;
       // sumAll.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = ch.val));
+      // console.log(parseInt(ch.val));
     });
     // console.log(sumAll);
 
@@ -103,8 +105,9 @@
     });
     allProCons(allPros);
     allProCons(allCons);
-    console.log(sumPros, sumCons);
 
+    
+    //ADDS ALL PRO OR CON VALUES
     let totalPros = sumPros.reduce((accumulator, currentValue) => {
       return accumulator + currentValue
     },0);
@@ -112,10 +115,24 @@
       return accumulator + currentValue
     },0);
     console.log(totalPros, totalCons);
+    
 
-
+    //CALCULATES AVERAGE PRO AND CON VALUES
+    avPros = ((totalPros / numPros) * 10).toFixed(2);
+    avCons = ((totalCons / numCons) * 10).toFixed(2);
+    
+    console.log(avPros, avCons);
+    
+    
+    //POPULATE INTERFACE WITH AVERAGE PRO AND CON VALUES
+    let pros = getEl("choiceY");
+    let cons = getEl("choiceN");
+    isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
+    isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
+    
+    
+    
     // OKAY TO HERE ================================================
-
 
     // THESE TWO WORK BUT NOW GENERALISED INTO "allProCons":
     // allPros.forEach(ch => {
@@ -130,28 +147,24 @@
     
     // TO DO ========================================================
 
-    // calculate average of PROs and CONs
-
-    // make into percentage and populate choiceY and choiceN
-
     // compare averages PROs and CONs to see which is greater
 
     // populate overall choice message
 
 
-    choicesYsum = sumChoices(choicesY);
-    choicesNsum = sumChoices(choicesN);
+    // choicesYsum = sumChoices(choicesY);
+    // choicesNsum = sumChoices(choicesN);
     
     // calculates average percentage from both y/n slider values:
-    let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
-    let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
+    // let choiceYtotal = choicesYsum / Object.keys(choicesY).length * 10;
+    // let choiceNtotal = choicesNsum / Object.keys(choicesN).length * 10;
     
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
-    if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
-    if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
+    // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
+    // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
     
-    isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
-    isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
+    // isNaN(choiceYtotal) ? choiceY.innerHTML = 0 : choiceY.innerHTML = choiceYtotal;
+    // isNaN(choiceNtotal) ? choiceN.innerHTML = 0 : choiceN.innerHTML = choiceNtotal;
     
 
     // displays overall choice
