@@ -6,6 +6,7 @@ Because decisions are hard, I made this.
 
 - [ ] fix duplicate IDs in pro/con choices
 - [ ] fix incorrect opposite choice message if all pro or con are 100% or one slider unused
+- [ ] only show decimal points (as in live version) if not zero
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
 - [ ] replace `.choices fieldset h2` with legend and style
 - [ ] enable deletion of reasons
