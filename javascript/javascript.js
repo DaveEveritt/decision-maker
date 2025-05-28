@@ -106,8 +106,8 @@
     
 
     //CALCULATES AVERAGE PRO AND CON VALUES
-    avPros = ((totalPros / numPros) * 10).toFixed(2);
-    avCons = ((totalCons / numCons) * 10).toFixed(2);
+    avPros = Math.floor((totalPros / numPros) * 10);
+    avCons = Math.floor((totalCons / numCons) * 10);
     
     
     //POPULATE INTERFACE WITH AVERAGE PRO AND CON VALUES
