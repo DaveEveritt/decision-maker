@@ -8,7 +8,8 @@ Because decisions are hard, I made this.
 - [ ] replace `.choices fieldset h2` with legend and style
 - [ ] only show decimal points (as in live version) if not zero (see DONE)
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
-- [ ] enable deletion of reasons
+- [ ] enable deletion of choices
+- [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
 - [ ] use `template`/`slot` for list items
 
