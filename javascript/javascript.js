@@ -108,24 +108,18 @@
     //CALCULATES AVERAGE PRO AND CON VALUES
     avPros = Math.floor((totalPros / numPros) * 10);
     avCons = Math.floor((totalCons / numCons) * 10);
-    
+    console.log(totalPros / numPros, totalCons / numCons);
     
     //POPULATE INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
     
-    
-    
-    // OKAY TO HERE ================================================
-
 
     // TO DO ========================================================
 
-    // - fix opposite choice message if one total is 100%
     // - fix duplicate slider IDs
     // - check if below gives percentage decimal points
 
-    
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
     // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
@@ -135,10 +129,10 @@
     if (isNaN(avPros) || isNaN(avCons)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
-    } else if (getEl("choiceY").innerHTML > getEl("choiceN").innerHTML) {
+    } else if (avPros > avCons) {
       getEl("decision").innerHTML = "Seems you want to!";
       getEl("decision").className = "yes";
-    } else if(getEl("choiceY").innerHTML < getEl("choiceN").innerHTML) {
+    } else if (avCons > avPros) {
       getEl("decision").innerHTML = "Seems you don't want to!";
       getEl("decision").className = "not";
     } else {
