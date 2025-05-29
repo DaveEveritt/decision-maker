@@ -5,6 +5,7 @@
   // ----------------------------------------------------------
   // HELPER FUNCTION: GETS SINGLE ELEMENT BY ID
   const getEl = (el) => { return document.getElementById(el) };
+
   
   // ----------------------------------------------------------
   // INITIALIZES VARIABLES
@@ -13,6 +14,7 @@
   let cons = getEl("choiceN");
   let choicesYsum = 0;
   let choicesNsum = 0;
+
 
   // ----------------------------------------------------------
   // LISTENS FOR USERS TO INPUT TEXT AND HIT "RETURN"
@@ -26,18 +28,16 @@
     });
   });
 
+
   // ----------------------------------------------------------
   // ADDS REASON TO DOM (INPUT:RANGE ELEMENT) AS IT’S INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
-    const proORcon = fornot == "for" ? `pro${sliders+1}` : `con${sliders+1}`;
-    // console.log(`Adding ${fornot} slider`);
-    
+    const proORcon = fornot == "for" ? `pro${sliders+1}` : `con${sliders+1}`;    
     
     if (text) {
       // Creates new slider HTML and adds to DOM
-      // FIX: FOR AND NOT HAVE SAME ID
       let newSlider = `
       <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
       <output for="${proORcon}" class="${proORcon}">0</output></label>`
@@ -45,7 +45,7 @@
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
-      // Show default percentage when first added on Y or N
+      // Sets and shows default slider percentage when first added
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0;
         if (fornot === "not") choiceN.innerHTML = 0;
@@ -55,11 +55,6 @@
     }
   } // END addReason()
   
-
-  // ADDS UP THE VALUES OF PRO AND CON CHOICES
-  function sumChoices(choices) {
-    return Object.values(choices).reduce((a, b) => a + b, 0);
-  }
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
@@ -96,7 +91,7 @@
     allProCons(allCons);
 
     
-    //ADDS ALL PRO OR CON VALUES
+    // ADDS ALL PRO OR CON VALUES
     let totalPros = sumPros.reduce((accumulator, currentValue) => {
       return accumulator + currentValue
     },0);
@@ -105,27 +100,25 @@
     },0);
     
 
-    //CALCULATES AVERAGE PRO AND CON VALUES
+    // CALCULATES AVERAGE PRO AND CON VALUES
     avPros = Math.floor((totalPros / numPros) * 10);
     avCons = Math.floor((totalCons / numCons) * 10);
-    console.log(totalPros / numPros, totalCons / numCons);
     
-    //POPULATE INTERFACE WITH AVERAGE PRO AND CON VALUES
+    // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
     
 
     // TO DO ========================================================
 
-    // - fix duplicate slider IDs
-    // - check if below gives percentage decimal points
+    // - check if below gives percentage decimal points (see DONE)
 
     //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
     // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
     // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
     
 
-    // displays overall choice
+    // DISPLAYS OVERALL RESULT OF CHOICES
     if (isNaN(avPros) || isNaN(avCons)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
@@ -151,15 +144,11 @@
     const proconMap = procon.map(p => p.value);
     const ourDict = [];
     
-    // console.log(ourDict);
-
     procon.forEach((pc,i) => {
-      // console.log(pc.id, i, proconMap[i]);
       const tmp = {};
       tmp['id'] = pc.id;
       tmp['val'] = proconMap[i];
       ourDict.push(tmp);
-      // console.log(ourDict);
     });
 
     populate(ourDict);
