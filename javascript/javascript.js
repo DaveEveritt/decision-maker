@@ -14,6 +14,8 @@
   let cons = getEl("choiceN");
   let choicesYsum = 0;
   let choicesNsum = 0;
+  let proSliders = 0;
+  let conSliders = 0;
 
 
   // ----------------------------------------------------------
@@ -34,13 +36,10 @@
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
-    let proSliders = 0;
-    let conSliders = 0;
     const proORcon = fornot == "pro" ? `pro${proSliders+1}` : `con${conSliders+1}`;
     // console.log(proSliders, conSliders);
     
     if (text) {
-      // PRO SLIDERS NOT INCREMENTING
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
       let newSlider = `
       <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
@@ -55,9 +54,9 @@
         if (fornot === "not") choiceN.innerHTML = 0;
       }
       
+      // console.log(proSliders, conSliders);
       proSliders += 1
       conSliders += 1
-      // console.log(proSliders, conSliders);
       // sliders += 1;
     }
   } // END addReason()
@@ -78,15 +77,19 @@
 
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
+    // THIS IS FLAWED - DON’T USE innerHTML to add!
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
-        console.log(choice);
+        console.log(choice); // UNDEFINED??
         sliderID = choice.id;
+        console.log(sliderID);
         if (choice.val && choice.id.startsWith("pro")){
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
+          // sumPros += sliderID.val;
           document.querySelector(`.${sliderID}`).innerHTML = choice.val;
         } else if (choice.id.startsWith("con")){
           sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
+          // sumCons += sliderID.val;
           document.querySelector(`.${sliderID}`).innerHTML = choice.val;
         }
       });

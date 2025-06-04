@@ -2,16 +2,19 @@
 
 Because decisions are hard, I made this.
 
+## PRIORITY!
+
+- [ ] fix pro slider but totals adding to 50% if maxed
+- [ ] fix input ID allocation from sequential to pro1, con1, etc.
+
 ## TO DO
 
-- [ ] fix label and input ID clash in PROS fieldset
 - [ ] replace `.choices fieldset h2` with legend and style
 - [ ] only show decimal points (as in live version) if not zero (see DONE)
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
 - [ ] enable deletion of choices
 - [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
-- [ ] use `template`/`slot` for list items
 
 ## DONE
 
@@ -24,6 +27,7 @@ Because decisions are hard, I made this.
 ## PENDING OPTIONS
 
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
+- [ ] use `template`/`slot` for list items
 - [ ] name and store previous choices to load again
 - [ ] hint to change default by highlighting (glow?) slider button
 
