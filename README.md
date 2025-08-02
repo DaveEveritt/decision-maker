@@ -2,10 +2,11 @@
 
 Because decisions are hard, I made this.
 
-## PRIORITY!
+## BUGS
 
-- [ ] fix pro slider but totals adding to 50% if maxed
+- [ ] fix pro slider totals adding to 50% if maxed
 - [ ] fix input ID allocation from sequential to pro1, con1, etc.
+- [ ] adding one more to choices after ranking resets the total to zero
 
 ## TO DO
 
@@ -16,6 +17,13 @@ Because decisions are hard, I made this.
 - [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
 
+## PENDING OPTIONS
+
+- [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
+- [ ] use `template`/`slot` for list items
+- [ ] name and store previous choices to load again
+- [ ] hint to change default by highlighting (glow?) slider button
+
 ## DONE
 
 - [x] trap for NaN when only one slider
@@ -23,13 +31,6 @@ Because decisions are hard, I made this.
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
 - [x] restrict length of reasons to a reasonable length (110 chars)
-
-## PENDING OPTIONS
-
-- [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
-- [ ] use `template`/`slot` for list items
-- [ ] name and store previous choices to load again
-- [ ] hint to change default by highlighting (glow?) slider button
 
 <!-- ## Greame’s suggestion
 
