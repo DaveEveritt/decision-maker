@@ -17,6 +17,10 @@
   let proSliders = 0;
   let conSliders = 0;
 
+  // let proReasons = 0;
+  // let conReasons = 0;
+  // let proAverage = 0;
+  // let conAverage = 0;
 
   // ----------------------------------------------------------
   // LISTENS FOR USERS TO INPUT TEXT AND HIT "RETURN"
@@ -30,14 +34,12 @@
     });
   });
 
-
   // ----------------------------------------------------------
   // ADDS REASON TO DOM (INPUT:RANGE ELEMENT) AS IT’S INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
     const proORcon = fornot == "pro" ? `pro${proSliders+1}` : `con${conSliders+1}`;
-    // console.log(proSliders, conSliders);
     
     if (text) {
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
@@ -50,14 +52,11 @@
       
       // SETS AND SHOWS DEFAULT SLIDER PERCENTAGE WHEN FIRST ADDED
       if (choicesYsum === 0 || choicesNsum === 0) {
-        if (fornot === "pro") choiceY.innerHTML = 0;
-        if (fornot === "not") choiceN.innerHTML = 0;
+        if (fornot === "pro") choiceY.innerHTML = 0,proSliders += 1;
+        if (fornot === "not") choiceN.innerHTML = 0,conSliders += 1;
       }
       
       // console.log(proSliders, conSliders);
-      proSliders += 1
-      conSliders += 1
-      // sliders += 1;
     }
   } // END addReason()
   
@@ -67,22 +66,20 @@
   function populate(choices) {
 
     let sliderID;
-    let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
-    let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
+    // let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
+    // let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
-    // let sumPros = [], sumCons = [];
     let sumPros = 0, sumCons = 0;
-
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
     // THIS IS FLAWED - DON’T USE innerHTML to add!
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
-        console.log(choice); // UNDEFINED??
+        // console.log(choice); // UNDEFINED??
         sliderID = choice.id;
-        console.log(sliderID);
+        // console.log(sliderID);
         if (choice.val && choice.id.startsWith("pro")){
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
           // sumPros += sliderID.val;
@@ -96,22 +93,14 @@
     });
     allProCons(allPros);
     allProCons(allCons);
-    console.log(sumPros);
-    console.log(sumCons);
-
-    
-    // ADDS ALL PRO OR CON VALUES
-    // let totalPros = sumPros.reduce((accumulator, currentValue) => {
-    //   return accumulator + currentValue
-    // },0);
-    // let totalCons = sumCons.reduce((accumulator, currentValue) => {
-    //   return accumulator + currentValue
-    // },0);
-    
+            
 
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
-    avPros = Math.floor((sumPros / numPros) * 10);
-    avCons = Math.floor((sumCons / numCons) * 10);
+    avPros = Math.floor(sumPros/proSliders) * 10;
+    avPros = Math.floor(sumPros/proSliders) * 10;
+    // parseFloat(avCons = Math.floor(sumCons/conSliders) * 10);
+    // parseFloat(avCons = Math.floor(sumCons/conSliders) * 10);
+    console.log(`avPros: ${avPros}, avCons: ${avCons}`);
     
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
