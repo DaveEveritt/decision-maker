@@ -17,10 +17,6 @@
   let proSliders = 0;
   let conSliders = 0;
 
-  // let proReasons = 0;
-  // let conReasons = 0;
-  // let proAverage = 0;
-  // let conAverage = 0;
 
   // ----------------------------------------------------------
   // LISTENS FOR USERS TO INPUT TEXT AND HIT "RETURN"
@@ -55,8 +51,6 @@
         if (fornot === "pro") choiceY.innerHTML = 0,proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0,conSliders += 1;
       }
-      
-      // console.log(proSliders, conSliders);
     }
   } // END addReason()
   
@@ -66,27 +60,21 @@
   function populate(choices) {
 
     let sliderID;
-    // let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
-    // let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
-    // THIS IS FLAWED - DON’T USE innerHTML to add!
+    // FLAWED - DON’T USE innerHTML to add!
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
-        // console.log(choice); // UNDEFINED??
         sliderID = choice.id;
-        // console.log(sliderID);
         if (choice.val && choice.id.startsWith("pro")){
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          // sumPros += sliderID.val;
           document.querySelector(`.${sliderID}`).innerHTML = choice.val;
         } else if (choice.id.startsWith("con")){
           sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          // sumCons += sliderID.val;
           document.querySelector(`.${sliderID}`).innerHTML = choice.val;
         }
       });
@@ -99,20 +87,12 @@
     avPros = (sumPros/proSliders * 10).toFixed(2);
     avCons = (sumCons/conSliders * 10).toFixed(2);
     console.log(`avPros: ${avPros}, avCons: ${avCons}`);
+
     
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
-    
 
-    // TO DO ========================================================
-
-    // - check if below gives percentage decimal points (see DONE)
-
-    //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
-    // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
-    // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
-    
 
     // DISPLAYS OVERALL RESULT OF CHOICES
     if (isNaN(avPros) || isNaN(avCons)) {
@@ -138,16 +118,16 @@
     const [...con] = document.querySelectorAll('[id^="con"]');
     const procon = con.concat(pro);
     const proconMap = procon.map(p => p.value);
-    const ourDict = [];
+    const allChoices = [];
     
     procon.forEach((pc,i) => {
       const tmp = {};
       tmp['id'] = pc.id;
       tmp['val'] = proconMap[i];
-      ourDict.push(tmp);
+      allChoices.push(tmp);
     });
 
-    populate(ourDict);
+    populate(allChoices);
   }, false);
 
 })();
