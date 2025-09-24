@@ -64,8 +64,12 @@ fieldset legend {
   flex-direction: column;
   align-self: flex-start;
 }
-.choices h2 {
+.choices legend {
   margin: 0 0 .75em;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5em;
+  background: inherit;
 }
 .reasons fieldset,
 .reasons legend,

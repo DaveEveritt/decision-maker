@@ -1,17 +1,16 @@
 # Decision maker
 
-Because decisions are hard, I made this.
+Because I often find decisions hard, I made this to scratch my own indecision itch.
 
 ## BUGS
 
-- [ ] fix average if some sliders have no value
-- [ ] adding another choice after ranking resets average to zero (message: please rank this new choice?)
+- [ ] fix average showing zero if new sliders not ranked (message: please rank this new choice?)
+- [ ] hint to change default by highlighting (glow?) slider button
 
 ## TO DO
 
-- [ ] replace `.choices fieldset h2` with legend and style
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
-- [ ] enable deletion of choices
+- [ ] enable deletion of choices (`element.remove()`)
 - [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
 
@@ -20,14 +19,13 @@ Because decisions are hard, I made this.
 - [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
 - [ ] use `template`/`slot` for list items
 - [ ] name and store previous choices to load again
-- [ ] hint to change default by highlighting (glow?) slider button
 
 ## DONE
 
 - [x] trap for NaN when only one slider
 - [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
-- [x] fix long decimals in % with .toFixed(2) if choice(Y|N) contain "." as char 2
+- [x] fix long decimals in % with .toFixed(2)
 - [x] restrict length of reasons to a reasonable length (110 chars)
 
 <!-- ## Greame’s suggestion
