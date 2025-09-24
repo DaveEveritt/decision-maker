@@ -4,14 +4,12 @@ Because decisions are hard, I made this.
 
 ## BUGS
 
-- [ ] fix pro slider totals adding to 50% if maxed
-- [ ] fix input ID allocation from sequential to pro1, con1, etc.
-- [ ] adding one more to choices after ranking resets the total to zero
+- [ ] fix average if some sliders have no value
+- [ ] adding another choice after ranking resets average to zero (message: please rank this new choice?)
 
 ## TO DO
 
 - [ ] replace `.choices fieldset h2` with legend and style
-- [ ] only show decimal points (as in live version) if not zero (see DONE)
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
 - [ ] enable deletion of choices
 - [ ] add a "delete all" option (`choices.forEach`?)
@@ -40,4 +38,4 @@ For the model, remove "for" and "against" to simplify. Just take the average or 
 
 ## Notes
 
-Originally ported *to* Meteor *from* a pure Javascript prototype, now reverted to the latter because… frameworks.
+Originally ported *to* Meteor *from* a pure Javascript prototype, then reverted *back to* JavaScript because… frameworks.
