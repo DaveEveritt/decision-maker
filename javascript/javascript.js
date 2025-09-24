@@ -96,10 +96,8 @@
             
 
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
-    avPros = Math.floor(sumPros/proSliders) * 10;
-    avPros = Math.floor(sumPros/proSliders) * 10;
-    // parseFloat(avCons = Math.floor(sumCons/conSliders) * 10);
-    // parseFloat(avCons = Math.floor(sumCons/conSliders) * 10);
+    avPros = (sumPros/proSliders * 10).toFixed(2);
+    avCons = (sumCons/conSliders * 10).toFixed(2);
     console.log(`avPros: ${avPros}, avCons: ${avCons}`);
     
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
