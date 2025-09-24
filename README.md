@@ -16,7 +16,7 @@ Because I often find decisions hard, I made this to scratch my own indecision it
 
 ## PENDING OPTIONS
 
-- [ ] limit reasons to 7 decisions for/against to manage cognitive load/indecision
+- [ ] limit for/against reasons to 7 to prevent overthinking
 - [ ] use `template`/`slot` for list items
 - [ ] name and store previous choices to load again
 

@@ -9,7 +9,6 @@
   
   // ----------------------------------------------------------
   // INITIALIZES VARIABLES
-  // let sliders = 0;
   let pros = getEl("choiceY");
   let cons = getEl("choiceN");
   let choicesYsum = 0;
@@ -66,7 +65,7 @@
     let sumPros = 0, sumCons = 0;
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
-    // FLAWED - DON’T USE innerHTML to add!
+    // FLAWED - DON’T USE innerHTML for calculations!
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
         sliderID = choice.id;
