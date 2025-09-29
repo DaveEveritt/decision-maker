@@ -40,7 +40,8 @@
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
       let newSlider = `
       <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
-      <output for="${proORcon}" class="${proORcon}">0</output></label>`
+      <output for="${proORcon}" class="${proORcon}">0</output>
+      <button type="button" aria-label="Close" aria-hidden="true" class="delete">x</button></label>`
       
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
