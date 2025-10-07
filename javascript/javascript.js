@@ -87,7 +87,7 @@
         }
       });
     });
-    allProCons(allPros);
+    allProCons
     allProCons(allCons);
 
     
