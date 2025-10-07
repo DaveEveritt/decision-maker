@@ -90,7 +90,7 @@
         }
       });
     });
-    allProCons
+    allProCons(allPros);
     allProCons(allCons);
             
 
