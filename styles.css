@@ -107,7 +107,7 @@ fieldset.reason-header label {
   color: var(--accent1);
 }
 input[type="range"] {
-  width: 91%;
+  width: 93%;
   font-size: 1em;
   padding: .75em 0;
 }
