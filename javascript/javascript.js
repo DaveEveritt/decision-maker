@@ -83,10 +83,10 @@
         sliderID = choice.id;
         if (choice.val && choice.id.startsWith("pro")){
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          document.querySelector(`.${sliderID}`).innerHTML = choice.val;
+          document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
         } else if (choice.id.startsWith("con")){
           sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          document.querySelector(`.${sliderID}`).innerHTML = choice.val;
+          document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
         }
       });
     });
