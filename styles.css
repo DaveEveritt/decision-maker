@@ -64,8 +64,12 @@ fieldset legend {
   flex-direction: column;
   align-self: flex-start;
 }
-.choices h2 {
+.choices legend {
   margin: 0 0 .75em;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5em;
+  background: inherit;
 }
 .reasons fieldset,
 .reasons legend,
@@ -107,10 +111,17 @@ input[type="range"] {
   font-size: 1em;
   padding: .75em 0;
 }
-output {
+output, .delete {
   position: absolute;
   bottom: .85em;
   right: 12px;
+}
+.delete {
+  top: .5em;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
 }
 #decision {
   text-align: center;

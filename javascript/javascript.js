@@ -9,11 +9,12 @@
   
   // ----------------------------------------------------------
   // INITIALIZES VARIABLES
-  let sliders = 0;
   let pros = getEl("choiceY");
   let cons = getEl("choiceN");
   let choicesYsum = 0;
   let choicesNsum = 0;
+  let proSliders = 0;
+  let conSliders = 0;
 
 
   // ----------------------------------------------------------
@@ -28,30 +29,39 @@
     });
   });
 
-
   // ----------------------------------------------------------
   // ADDS REASON TO DOM (INPUT:RANGE ELEMENT) AS IT’S INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
-    const proORcon = fornot == "for" ? `pro${sliders+1}` : `con${sliders+1}`;    
+    const proORcon = fornot == "pro" ? `pro${proSliders+1}` : `con${conSliders+1}`;
     
     if (text) {
-      // Creates new slider HTML and adds to DOM
+      // CREATES NEW SLIDER HTML AND ADDS TO DOM
       let newSlider = `
       <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
-      <output for="${proORcon}" class="${proORcon}">0</output></label>`
-      
+        <output for="${proORcon}" class="${proORcon}">0</output>
+        <button aria-label="delete reason" type="button" class="delete">
+          <span aria-hidden="true" title="delete reason">x</span>
+        </button>
+      </label>`;
+
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
-      // Sets and shows default slider percentage when first added
+      // SETS AND SHOWS DEFAULT SLIDER PERCENTAGE WHEN FIRST ADDED
       if (choicesYsum === 0 || choicesNsum === 0) {
-        if (fornot === "for") choiceY.innerHTML = 0;
-        if (fornot === "not") choiceN.innerHTML = 0;
+        if (fornot === "pro") choiceY.innerHTML = 0, proSliders += 1;
+        if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
-    
-      sliders += 1;
+      
+      // let deleteButton = document.getElementById(proORcon);
+      // console.dir(deleteButton);
+      // console.log(deleteButton.nextSiblingElement.nextSiblingElement);
+      // deleteButton.addEventListener("click", function(e) {
+      //   console.log(deleteButton.parentElement);
+      // });
+
     }
   } // END addReason()
   
@@ -61,62 +71,38 @@
   function populate(choices) {
 
     let sliderID;
-    let numPros = choices.filter(ch => ch.id.startsWith("pro")).length;
-    let numCons = choices.filter(ch => ch.id.startsWith("con")).length;
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
-    let sumPros = [], sumCons = [];
+    let sumPros = 0, sumCons = 0;
 
-
-    // SETS INPUT OUTPUT VALUE FOR SLIDERS
-    choices.forEach(ch => {
-      sliderID = ch.id;
-      document.querySelector(`.${sliderID}`).innerHTML = ch.val;
-    });
-
-
-    // GATHERS ALL PRO AND CON VALUES IN AN ARRAY
+    // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
+    // FLAWED - DON’T USE innerHTML for calculations!
     const allProCons = (proORcon => {
-      proORcon.forEach(pORc => {
-        sliderID = pORc.id;
-        if (pORc.id.startsWith("pro")){
-          sumPros.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = pORc.val));
-        } else if (pORc.id.startsWith("con")){
-          sumCons.push(parseInt(document.querySelector(`.${sliderID}`).innerHTML = pORc.val));
+      proORcon.forEach(choice => {
+        sliderID = choice.id;
+        if (choice.val && choice.id.startsWith("pro")){
+          sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
+          document.querySelector(`.${sliderID}`).innerHTML = choice.val;
+        } else if (choice.id.startsWith("con")){
+          sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
+          document.querySelector(`.${sliderID}`).innerHTML = choice.val;
         }
       });
     });
     allProCons
     allProCons(allCons);
+            
 
-    
-    // ADDS ALL PRO OR CON VALUES
-    let totalPros = sumPros.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue
-    },0);
-    let totalCons = sumCons.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue
-    },0);
-    
+    // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
+    avPros = (sumPros/proSliders * 10).toFixed(2);
+    avCons = (sumCons/conSliders * 10).toFixed(2);
 
-    // CALCULATES AVERAGE PRO AND CON VALUES
-    avPros = Math.floor((totalPros / numPros) * 10);
-    avCons = Math.floor((totalCons / numCons) * 10);
     
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
-    
 
-    // TO DO ========================================================
-
-    // - check if below gives percentage decimal points (see DONE)
-
-    //  numbers < 100 .toPrecision(2) = decimals to 9.99 then integers to 99.99…
-    // if (parseFloat(choiceYtotal - Math.floor(choiceYtotal)) > 0) choiceYtotal = choiceYtotal.toFixed(2);
-    // if (parseFloat(choiceNtotal - Math.floor(choiceNtotal)) > 0) choiceNtotal = choiceNtotal.toFixed(2);
-    
 
     // DISPLAYS OVERALL RESULT OF CHOICES
     if (isNaN(avPros) || isNaN(avCons)) {
@@ -137,21 +123,31 @@
 
   // ----------------------------------------------------------
   // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
-  choices.addEventListener("input", function(e) {
+  choices.addEventListener("input", function() {
     const [...pro] = document.querySelectorAll('[id^="pro"]');
     const [...con] = document.querySelectorAll('[id^="con"]');
     const procon = con.concat(pro);
     const proconMap = procon.map(p => p.value);
-    const ourDict = [];
+    const allChoices = [];
     
     procon.forEach((pc,i) => {
       const tmp = {};
       tmp['id'] = pc.id;
       tmp['val'] = proconMap[i];
-      ourDict.push(tmp);
+      allChoices.push(tmp);
     });
 
-    populate(ourDict);
+    populate(allChoices);
   }, false);
+
+  // ----------------------------------------------------------
+  // LISTENS FOR DELETE BUTTON AND DELETES CHOICE
+  // let [...deleteButtons] = document.getElementsByClassName("delete");
+  // console.log(deleteButtons);
+  // deleteButtons.forEach(deleteButton => {
+  //   deleteButton.addEventListener("click", function() {
+  //     alert(this.parent);
+  //   });
+  // });
 
 })();
