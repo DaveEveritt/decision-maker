@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 80 80">
+  <circle r="39"></circle>
+  <path fill="#fff" d="M0,38a38,38 0 0 1 0,-76a19,19 0 0 1 0,38a19,19 0 0 0 0,38"></path>
+  <circle r="5" cy="19" fill="#fff"></circle>
+  <circle r="5" cy="-19"></circle>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>

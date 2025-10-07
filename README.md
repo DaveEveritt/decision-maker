@@ -27,6 +27,7 @@ Because I often find decisions hard, I made this to scratch my own indecision it
 - [x] CSS: use classlist.add instead of `style.color`
 - [x] fix long decimals in % with .toFixed(2)
 - [x] restrict length of reasons to a reasonable length (110 chars)
+- [x] make favicon at [realfavicongenerator.net](https://realfavicongenerator.net/your-favicon-is-ready)
 
 <!-- ## Greame’s suggestion
 
