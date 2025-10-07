@@ -40,17 +40,28 @@
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
       let newSlider = `
       <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
-      <output for="${proORcon}" class="${proORcon}">0</output>
-      <button type="button" aria-label="Close" aria-hidden="true" class="delete">x</button></label>`
-      
+        <output for="${proORcon}" class="${proORcon}">0</output>
+        <button aria-label="delete reason" type="button" class="delete">
+          <span aria-hidden="true" title="delete reason">x</span>
+        </button>
+      </label>`;
+
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
       // SETS AND SHOWS DEFAULT SLIDER PERCENTAGE WHEN FIRST ADDED
       if (choicesYsum === 0 || choicesNsum === 0) {
-        if (fornot === "pro") choiceY.innerHTML = 0,proSliders += 1;
-        if (fornot === "not") choiceN.innerHTML = 0,conSliders += 1;
+        if (fornot === "pro") choiceY.innerHTML = 0, proSliders += 1;
+        if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
+      
+      // let deleteButton = document.getElementById(proORcon);
+      // console.dir(deleteButton);
+      // console.log(deleteButton.nextSiblingElement.nextSiblingElement);
+      // deleteButton.addEventListener("click", function(e) {
+      //   console.log(deleteButton.parentElement);
+      // });
+
     }
   } // END addReason()
   
@@ -128,5 +139,15 @@
 
     populate(allChoices);
   }, false);
+
+  // ----------------------------------------------------------
+  // LISTENS FOR DELETE BUTTON AND DELETES CHOICE
+  // let [...deleteButtons] = document.getElementsByClassName("delete");
+  // console.log(deleteButtons);
+  // deleteButtons.forEach(deleteButton => {
+  //   deleteButton.addEventListener("click", function() {
+  //     alert(this.parent);
+  //   });
+  // });
 
 })();
