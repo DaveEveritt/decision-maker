@@ -107,14 +107,14 @@ fieldset.reason-header label {
   color: var(--accent1);
 }
 input[type="range"] {
-  width: 93%;
+  width: 91%;
   font-size: 1em;
   padding: .75em 0;
 }
 output, .delete {
   position: absolute;
   bottom: .85em;
-  right: 12px;
+  right: 7px;
 }
 .delete {
   top: .5em;
