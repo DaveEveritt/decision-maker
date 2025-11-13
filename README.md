@@ -7,6 +7,7 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
 - [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
+- [ ] use another method instead of innerHTML for calculations
 
 ## PENDING OPTIONS
 
