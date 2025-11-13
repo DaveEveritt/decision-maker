@@ -55,6 +55,7 @@
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
       
+      // DELETES REASON, BUT ONLY AFTER USER CONFIRMS
       let [...deleteButtons] = document.getElementsByClassName("delete");
       deleteButtons.forEach (deleteButton => {
         deleteButton.addEventListener("click", function(e) {
