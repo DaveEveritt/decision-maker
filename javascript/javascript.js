@@ -58,7 +58,9 @@
       let [...deleteButtons] = document.getElementsByClassName("delete");
       deleteButtons.forEach (deleteButton => {
         deleteButton.addEventListener("click", function(e) {
-          deleteButton.parentElement.remove();
+          if (confirm("Delete this reason?")) {
+            deleteButton.parentElement.remove();
+          }
         });
       });
 
