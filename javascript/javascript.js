@@ -55,12 +55,12 @@
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
       
-      // let deleteButton = document.getElementById(proORcon);
-      // console.dir(deleteButton);
-      // console.log(deleteButton.nextSiblingElement.nextSiblingElement);
-      // deleteButton.addEventListener("click", function(e) {
-      //   console.log(deleteButton.parentElement);
-      // });
+      let [...deleteButtons] = document.getElementsByClassName("delete");
+      deleteButtons.forEach (deleteButton => {
+        deleteButton.addEventListener("click", function(e) {
+          deleteButton.parentElement.remove();
+        });
+      });
 
     }
   } // END addReason()

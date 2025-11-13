@@ -1,16 +1,10 @@
 # Decision maker [Online version](https://daveeveritt.github.io/decision-maker/)
 
-Because I often find decisions hard, I made this to scratch my own indecision itch.
-
-## BUGS
-
-- [ ] fix average showing zero if new sliders not ranked (message: please rank this new choice?)
-- [ ] hint to change default by highlighting (glow?) slider button
+Because I often find decisions hard, I made this to scratch my own indecisive itch.
 
 ## TO DO
 
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
-- [ ] enable deletion of choices (`element.remove()`)
 - [ ] add a "delete all" option (`choices.forEach`?)
 - [ ] update Open Graph Protocol image
 
@@ -20,8 +14,11 @@ Because I often find decisions hard, I made this to scratch my own indecision it
 - [ ] use `template`/`slot` for list items
 - [ ] name and store previous choices to load again
 
+---
+
 ## DONE
 
+- [x] enable deletion of choices (`element.remove()`)
 - [x] trap for NaN when only one slider
 - [x] use Y N sliders instead of total sliders (line ~46)
 - [x] CSS: use classlist.add instead of `style.color`
