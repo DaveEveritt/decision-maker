@@ -11,8 +11,8 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 
 ## TO DO CODE
 
+- [ ] test Open Graph Protocol image for social media
 - [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
-- [ ] update Open Graph Protocol image for social media
 - [ ] use another method instead of innerHTML for calculations
 - [ ] try `template`/`slot` for list items
 
