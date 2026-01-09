@@ -2,18 +2,19 @@
 
 Because I often find decisions hard, I made this to scratch my own indecisive itch.
 
-## TO DO
-
-- [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
-- [ ] add a "delete all" option (`choices.forEach`?)
-- [ ] update Open Graph Protocol image
-- [ ] use another method instead of innerHTML for calculations
-
-## PENDING OPTIONS
+## POSSIBLE USER OPTIONS
 
 - [ ] limit for/against reasons to 7 to prevent overthinking
-- [ ] use `template`/`slot` for list items
 - [ ] name and store previous choices to load again
+- [ ] add a field to enter the text of the question
+- [ ] add a "delete all" option (`choices.forEach`?)
+
+## TO DO CODE
+
+- [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
+- [ ] update Open Graph Protocol image for social media
+- [ ] use another method instead of innerHTML for calculations
+- [ ] try `template`/`slot` for list items
 
 ---
 
