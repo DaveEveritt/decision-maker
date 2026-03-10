@@ -2,8 +2,6 @@
 
 Because I often find decisions hard, I made this to scratch my own indecisive itch.
 
-PROBLEM: GitHuv=b not responding to pushes
-
 ## POSSIBLE USER OPTIONS
 
 - [ ] limit for/against reasons to 7 to prevent overthinking
