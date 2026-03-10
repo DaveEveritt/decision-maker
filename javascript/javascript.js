@@ -150,6 +150,7 @@
   // deleteButtons.forEach(deleteButton => {
   //   deleteButton.addEventListener("click", function() {
   //     alert(this.parent);
+  //     deleteButton.parentElement.remove()
   //   });
   // });
 
