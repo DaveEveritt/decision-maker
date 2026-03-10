@@ -39,11 +39,12 @@
     if (text) {
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
       let newSlider = `
-      <label for="${proORcon}">${text}<input type="range" id="${proORcon}" max="10" value="0">
+      <label for="${proORcon}">${text}
+        <input type="range" id="${proORcon}" max="10" value="0">
         <output for="${proORcon}" class="${proORcon}">0</output>
-        <button aria-label="delete reason" type="button" class="delete">
+        <!-- <button aria-label="delete reason" type="button" data-parent-id="${proORcon}" class="delete">
           <span aria-hidden="true" title="delete reason">x</span>
-        </button>
+        </button> -->
       </label>`;
 
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
@@ -55,19 +56,19 @@
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
       
-      // DELETES REASON, BUT ONLY AFTER USER CONFIRMS
-      let [...deleteButtons] = document.getElementsByClassName("delete");
-      deleteButtons.forEach (deleteButton => {
-        deleteButton.addEventListener("click", function(e) {
-          if (confirm("Delete this reason?")) {
-            deleteButton.parentElement.remove();
-          }
-        });
-      });
-
     }
+    
+    // DELETES REASON AFTER USER CONFIRMATION
+    // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
+    // deleteWhat.addEventListener("click", function() {
+    //   if (confirm("Delete reason?")) {
+    //     deleteWhat.parentElement.remove();
+    //   }
+    //   console.log(choices);
+    //   populate(allChoices);
+    // });
+    
   } // END addReason()
-  
 
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
@@ -126,12 +127,13 @@
 
   // ----------------------------------------------------------
   // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
+  let allChoices;
   choices.addEventListener("input", function() {
     const [...pro] = document.querySelectorAll('[id^="pro"]');
     const [...con] = document.querySelectorAll('[id^="con"]');
     const procon = con.concat(pro);
     const proconMap = procon.map(p => p.value);
-    const allChoices = [];
+    allChoices = [];
     
     procon.forEach((pc,i) => {
       const tmp = {};
@@ -139,19 +141,8 @@
       tmp['val'] = proconMap[i];
       allChoices.push(tmp);
     });
-
+    // console.log(allChoices);
     populate(allChoices);
   }, false);
-
-  // ----------------------------------------------------------
-  // LISTENS FOR DELETE BUTTON AND DELETES CHOICE
-  // let [...deleteButtons] = document.getElementsByClassName("delete");
-  // console.log(deleteButtons);
-  // deleteButtons.forEach(deleteButton => {
-  //   deleteButton.addEventListener("click", function() {
-  //     alert(this.parent);
-  //     deleteButton.parentElement.remove()
-  //   });
-  // });
 
 })();
