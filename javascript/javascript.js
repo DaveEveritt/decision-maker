@@ -86,9 +86,15 @@
       proORcon.forEach(choice => {
         sliderID = choice.id;
         if (choice.val && choice.id.startsWith("pro")){
+          // console.log(choice.val);
+          // console.log(sliderID.val);
+          console.log(parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val));
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
           document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
+          // sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
+          // document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
         } else if (choice.id.startsWith("con")){
+          console.log(sliderID.val);
           sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
           document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
         }
