@@ -111,22 +111,23 @@
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
     avPros = (sumPros/proSliders * 10).toFixed(2);
     avCons = (sumCons/conSliders * 10).toFixed(2);
+    console.log(avPros,avCons);
 
-    
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
 
 
     // DISPLAYS OVERALL RESULT OF CHOICES
-    console.log(avPros,avCons);
     if (isNaN(avPros) || isNaN(avCons)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
     } else if (avPros > avCons) {
+      console.log(avPros,avCons);
       getEl("decision").innerHTML = "Seems you want to!";
       getEl("decision").className = "yes";
     } else if (avPros < avCons) {
+      console.log(avPros,avCons);
       getEl("decision").innerHTML = "Seems you don't want to!";
       getEl("decision").className = "not";
     } else {
