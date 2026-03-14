@@ -80,26 +80,30 @@
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
+    const sliderValue = (choiceValue) => {
+      return choiceValue * 10;
+    };
+
+    const showSliderValue = (slider, value) => {
+      document.querySelector(`.${slider}`).innerHTML = value;
+    };
+
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
     // EDIT - DON’T USE innerHTML for calculations!
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
         sliderID = choice.id;
         if (choice.val && choice.id.startsWith("pro")){
-          // console.log(choice.val);
-          // console.log(sliderID.val);
-          console.log(parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val));
           sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
-          // sumPros += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          // document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
+          showSliderValue(sliderID, sliderValue(choice.val));
         } else if (choice.id.startsWith("con")){
-          console.log(sliderID.val);
           sumCons += parseInt(document.querySelector(`.${sliderID}`).innerHTML = choice.val);
-          document.querySelector(`.${sliderID}`).innerHTML = choice.val * 10;
+          showSliderValue(sliderID, sliderValue(choice.val));
         }
       });
     });
+
+
     allProCons(allPros);
     allProCons(allCons);
             
@@ -115,13 +119,14 @@
 
 
     // DISPLAYS OVERALL RESULT OF CHOICES
+    console.log(avPros,avCons);
     if (isNaN(avPros) || isNaN(avCons)) {
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
     } else if (avPros > avCons) {
       getEl("decision").innerHTML = "Seems you want to!";
       getEl("decision").className = "yes";
-    } else if (avCons > avPros) {
+    } else if (avPros < avCons) {
       getEl("decision").innerHTML = "Seems you don't want to!";
       getEl("decision").className = "not";
     } else {
