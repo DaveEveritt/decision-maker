@@ -115,7 +115,7 @@
     } else if (avPros > avCons) {
       getEl("decision").innerHTML = "Seems you want to!";
       getEl("decision").className = "yes";
-    } else if (avCons > avPros) {
+    } else if (avPros < avCons) {
       getEl("decision").innerHTML = "Seems you don't want to!";
       getEl("decision").className = "not";
     } else {
