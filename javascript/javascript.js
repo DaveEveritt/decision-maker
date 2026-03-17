@@ -148,7 +148,7 @@
       default:
         console.log(`Default pros and cons: ${avPros},${avCons}`);
     }
-
+  }
 
   // ----------------------------------------------------------
   // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
