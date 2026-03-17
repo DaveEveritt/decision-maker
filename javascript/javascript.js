@@ -54,7 +54,6 @@
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
-    console.log(fornot);
     const proORcon = fornot == "for" ? `pro${proSliders+1}` : `con${conSliders+1}`;
     
     // CREATES NEW SLIDER AND ADDS TO DOM
@@ -71,19 +70,19 @@
       }
     }
     
-    // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
-    // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
-    // deleteWhat.addEventListener("click", function() {
-    //   if (confirm("Delete reason?")) {
-    //     deleteWhat.parentElement.remove();
-    //   }
-    //   console.log(choices);
-    //   populate(allChoices);
-    // });
-    
   } // END addReason()
-
-
+  
+  
+  // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
+  // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
+  // deleteWhat.addEventListener("click", function() {
+  //   if (confirm("Delete reason?")) {
+  //     deleteWhat.parentElement.remove();
+  //   }
+  //   console.log(choices);
+  //   populate(allChoices);
+  // });
+  
 
   // ----------------------------------------------------------
   // MULTIPLY SLIDER VALUE BY 10
@@ -103,13 +102,11 @@
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
 
-    console.log(`Populate with`, choices);
-
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
-    // EDIT - DON’T USE innerHTML for calculations!
+    // EDIT - DON’T USE innerHTML for calculations?
     const allProCons = (proORcon => {
       proORcon.forEach(choice => {
         sliderID = choice.id;
@@ -128,8 +125,6 @@
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
     avPros = parseFloat((sumPros/proSliders * 10).toFixed(2));
     avCons = parseFloat((sumCons/conSliders * 10).toFixed(2));
-    console.log('averages',avPros,avCons);
-    console.log(typeof avPros, typeof avCons);
 
     // DISPLAYS AVERAGE PRO AND CON VALUES BELOW SLIDERS
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
@@ -138,28 +133,24 @@
     // DISPLAYS OVERALL RESULT OF CHOICES
     switch(true) {
       case (isNaN(avPros) || isNaN(avCons)):
-        console.log(`missing either pros or cons ${avPros},${avCons}`);
-        getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
+        getEl("decision").innerHTML = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
         getEl("decision").className = "dunno";
         break;
       case (avPros > avCons):
-        console.log(`pros bigger than cons ${avPros},${avCons}`);
         getEl("decision").innerHTML = "Seems you want to!";
         getEl("decision").className = "yes";
         break;
       case (avPros < avCons):
-        console.log(`pros smaller than cons ${avPros},${avCons}`);
         getEl("decision").innerHTML = "Seems you don't want to!";
         getEl("decision").className = "not";
         break;
       case (avPros === avCons):
-        console.log(`pros same as cons ${avPros},${avCons}`);
         getEl("decision").innerHTML = "Make up your mind!";
         getEl("decision").className = "dunno";
         break;
       default:
-        console.log(`Default pros and cons: ${avPros},${avCons}`);
-        // break;
+        getEl("decision").innerHTML = "Something went wrong!";
+        getEl("decision").className = "dunno";
     }
   } // END populate()
 
@@ -178,7 +169,7 @@
       allChoices.push(tmp);
     });
     return allChoices;
-  }
+  } // END getCurrentProsCons()
 
 
   // ----------------------------------------------------------
