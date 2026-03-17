@@ -5,6 +5,7 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 ## TO DO
 
 - [ ] FIX: delete reason comes up three times before deleting
+- [ ] FIX: with one pro/con slider each, 100% shows opposite of pro/con (LINE 122)
 
 ## POSSIBLE USER OPTIONS
 
