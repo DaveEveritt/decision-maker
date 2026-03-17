@@ -41,9 +41,9 @@
     <label for="${procon}">${txt}
       <input type="range" id="${procon}" max="10" value="0">
       <output for="${procon}" class="${procon}">0</output>
-      <!-- <button aria-label="delete reason" type="button" data-parent-id="${procon}" class="delete">
+      <button aria-label="delete reason" type="button" data-parent-id="${procon}" class="delete">
         <span aria-hidden="true" title="delete reason">x</span>
-      </button> -->
+      </button>
     </label>`;
     return newSlider;
   };
