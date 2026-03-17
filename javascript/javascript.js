@@ -15,12 +15,15 @@
   let choicesNsum = 0;
   let proSliders = 0;
   let conSliders = 0;
+  let allChoices;
   let sliderID;
+  let newSlider;
 
 
   // ----------------------------------------------------------
   // LISTENS FOR USERS TO INPUT TEXT AND HIT "RETURN"
   const reasons = document.querySelectorAll("#reasons input");
+  
   reasons.forEach(el => {
     el.addEventListener("keyup", function(e) {
       if (e.keyCode === 13) {
@@ -30,34 +33,42 @@
     });
   });
 
+
   // ----------------------------------------------------------
-  // ADDS REASON TO DOM (INPUT:RANGE ELEMENT) AS IT’S INPUT
+  // ADDS REASON HTML TO DOM
+  const addSlider = (procon, txt) => {
+    newSlider = `
+    <label for="${procon}">${txt}
+      <input type="range" id="${procon}" max="10" value="0">
+      <output for="${procon}" class="${procon}">0</output>
+      <!-- <button aria-label="delete reason" type="button" data-parent-id="${procon}" class="delete">
+        <span aria-hidden="true" title="delete reason">x</span>
+      </button> -->
+    </label>`;
+    return newSlider;
+  };
+
+
+  // ----------------------------------------------------------
+  // ADDS REASONS TO DOM WHEN INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
     console.log(fornot);
     const proORcon = fornot == "for" ? `pro${proSliders+1}` : `con${conSliders+1}`;
     
+    // CREATES NEW SLIDER AND ADDS TO DOM
     if (text) {
-      // CREATES NEW SLIDER HTML AND ADDS TO DOM
-      let newSlider = `
-      <label for="${proORcon}">${text}
-        <input type="range" id="${proORcon}" max="10" value="0">
-        <output for="${proORcon}" class="${proORcon}">0</output>
-        <!-- <button aria-label="delete reason" type="button" data-parent-id="${proORcon}" class="delete">
-          <span aria-hidden="true" title="delete reason">x</span>
-        </button> -->
-      </label>`;
+      newSlider = addSlider(proORcon, text);
 
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
-      // COUNTS SLIDERS WHEN ADDED AND SHOWS DEFAULT VALUE ZERO
+      // COUNTS SLIDERS WHEN ADDED, SHOWS DEFAULT ZERO VALUE
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0, proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
-      
     }
     
     // DELETES REASON AFTER USER CONFIRMATION
@@ -71,6 +82,8 @@
     // });
     
   } // END addReason()
+
+
 
   // ----------------------------------------------------------
   // CALCULATE
@@ -111,7 +124,6 @@
 
     allProCons(choices);
             
-
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
     avPros = (sumPros/proSliders * 10).toFixed(2);
     avCons = (sumCons/conSliders * 10).toFixed(2);
@@ -120,7 +132,6 @@
     // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
-
 
     // DISPLAYS OVERALL RESULT OF CHOICES
     switch(true) {
@@ -147,11 +158,11 @@
       default:
         console.log(`Default pros and cons: ${avPros},${avCons}`);
     }
-  }
+  } // END populate()
 
+  
   // ----------------------------------------------------------
   // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
-  let allChoices;
   choices.addEventListener("input", function() {
     const [...pro] = document.querySelectorAll('[id^="pro"]');
     const [...con] = document.querySelectorAll('[id^="con"]');
