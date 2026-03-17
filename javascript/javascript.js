@@ -41,25 +41,35 @@
     <label for="${procon}">${txt}
       <input type="range" id="${procon}" max="10" value="0">
       <output for="${procon}" class="${procon}">0</output>
-      <button aria-label="delete reason" type="button" data-parent-id="${procon}" class="delete">
+      <button aria-label="delete reason" type="button" data-parentId="${procon}" class="delete">
         <span aria-hidden="true" title="delete reason">x</span>
       </button>
     </label>`;
     return newSlider;
   };
-
-
+  
+  // THIS SLOWS DOWN PAGE LOAD?
+  // const getDeleteButtons = () => {
+  //   if (document.getElementsByClassName("delete") !== undefined){
+  //     console.log("in getDeleteButtons");
+  //     return document.getElementsByClassName("delete");
+  //   }
+  // };
+  function getDeleteButtons(){
+    console.log("in getDeleteButtons");
+    return document.getElementsByClassName("delete");
+  };
+  
   // ----------------------------------------------------------
   // ADDS REASONS TO DOM WHEN INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
     const proORcon = fornot == "for" ? `pro${proSliders+1}` : `con${conSliders+1}`;
-    
     // CREATES NEW SLIDER AND ADDS TO DOM
     if (text) {
       newSlider = addSlider(proORcon, text);
-
+      
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
@@ -68,14 +78,29 @@
         if (fornot === "for") choiceY.innerHTML = 0, proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
+
+      if ([...document.getElementsByClassName("delete")].length !== 0){
+        getDeleteButtons();
+      }
     }
-    
   } // END addReason()
   
   
+  
+  // if ([...document.getElementsByClassName("delete")].length !== 0){
+  //   const deleteButtons = getDeleteButtons();
+  //   // console.log(deleteButtons);
+  //   console.log("We have delete buttons?");
+  // }
+
   // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
   // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
-  // deleteWhat.addEventListener("click", function() {
+  // deleteButtons.addEventListener("click", function(e) {
+  //   console.log(e.target);
+  // });
+  // let deleteWhat = this.dataset.parentId;
+  // deleteWhat.addEventListener("click", function(e) {
+  //   console.log(e.target)
   //   if (confirm("Delete reason?")) {
   //     deleteWhat.parentElement.remove();
   //   }
