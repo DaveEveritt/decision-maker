@@ -123,24 +123,31 @@
 
 
     // DISPLAYS OVERALL RESULT OF CHOICES
-    if (isNaN(avPros) || isNaN(avCons)) {
-      console.log(`missing either pros or cons ${avPros},${avCons}`);
-      getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
-      getEl("decision").className = "dunno";
-    } else if (avPros > avCons) {
-      console.log(`pros bigger than cons ${avPros},${avCons}`);
-      getEl("decision").innerHTML = "Seems you want to!";
-      getEl("decision").className = "yes";
-    } else if (avPros < avCons) {
-      console.log(`pros smaller than cons ${avPros},${avCons}`);
-      getEl("decision").innerHTML = "Seems you don't want to!";
-      getEl("decision").className = "not";
-    } else {
-      console.log(`pros same as cons ${avPros},${avCons}`);
-      getEl("decision").innerHTML = "Make up your mind!";
-      getEl("decision").className = "dunno";
+
+    switch(true) {
+      case (isNaN(avPros) || isNaN(avCons)):
+        console.log(`missing either pros or cons ${avPros},${avCons}`);
+        getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
+        getEl("decision").className = "dunno";
+        break;
+      case (avPros > avCons):
+        console.log(`pros bigger than cons ${avPros},${avCons}`);
+        getEl("decision").innerHTML = "Seems you want to!";
+        getEl("decision").className = "yes";
+        break;
+      case (avPros < avCons):
+        console.log(`pros smaller than cons ${avPros},${avCons}`);
+        getEl("decision").innerHTML = "Seems you don't want to!";
+        getEl("decision").className = "not";
+        break;
+      case (avPros === avCons):
+        console.log(`pros same as cons ${avPros},${avCons}`);
+        getEl("decision").innerHTML = "Make up your mind!";
+        getEl("decision").className = "dunno";
+        break;
+      default:
+        console.log(`Default pros and cons: ${avPros},${avCons}`);
     }
-  } // END populate()
 
 
   // ----------------------------------------------------------
