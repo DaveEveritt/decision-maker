@@ -123,7 +123,6 @@
 
 
     // DISPLAYS OVERALL RESULT OF CHOICES
-
     switch(true) {
       case (isNaN(avPros) || isNaN(avCons)):
         console.log(`missing either pros or cons ${avPros},${avCons}`);
