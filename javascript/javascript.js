@@ -71,7 +71,7 @@
       }
     }
     
-    // DELETES REASON AFTER USER CONFIRMATION
+    // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
     // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
     // deleteWhat.addEventListener("click", function() {
     //   if (confirm("Delete reason?")) {
@@ -86,12 +86,13 @@
 
 
   // ----------------------------------------------------------
-  // CALCULATE
-
+  // MULTIPLY SLIDER VALUE BY 10
   const sliderValue = (choiceValue) => {
     return choiceValue * 10;
   };
-
+  
+  // ----------------------------------------------------------
+  // ADD TEXT SHOWING SLIDER VALUE TO DOM
   const showSliderValue = (slider, value) => {
     document.querySelector(`.${slider}`).innerHTML = value;
   };
@@ -129,7 +130,7 @@
     avCons = (sumCons/conSliders * 10).toFixed(2);
     console.log(avPros,avCons);
 
-    // POPULATES INTERFACE WITH AVERAGE PRO AND CON VALUES
+    // DISPLAYS AVERAGE PRO AND CON VALUES BELOW SLIDERS
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
     isNaN(avCons) ? cons.innerHTML = 0 : cons.innerHTML = avCons;
 
@@ -160,7 +161,7 @@
     }
   } // END populate()
 
-  
+
   // ----------------------------------------------------------
   // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
   choices.addEventListener("input", function() {
