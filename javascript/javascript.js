@@ -126,9 +126,10 @@
     allProCons(choices);
             
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
-    avPros = (sumPros/proSliders * 10).toFixed(2);
-    avCons = (sumCons/conSliders * 10).toFixed(2);
-    console.log(avPros,avCons);
+    avPros = parseFloat((sumPros/proSliders * 10).toFixed(2));
+    avCons = parseFloat((sumCons/conSliders * 10).toFixed(2));
+    console.log('averages',avPros,avCons);
+    console.log(typeof avPros, typeof avCons);
 
     // DISPLAYS AVERAGE PRO AND CON VALUES BELOW SLIDERS
     isNaN(avPros) ? pros.innerHTML = 0 : pros.innerHTML = avPros;
@@ -158,13 +159,12 @@
         break;
       default:
         console.log(`Default pros and cons: ${avPros},${avCons}`);
+        // break;
     }
   } // END populate()
 
 
-  // ----------------------------------------------------------
-  // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
-  choices.addEventListener("input", function() {
+  function getCurrentProsCons() {
     const [...pro] = document.querySelectorAll('[id^="pro"]');
     const [...con] = document.querySelectorAll('[id^="con"]');
     const procon = con.concat(pro);
@@ -177,7 +177,14 @@
       tmp['val'] = proconMap[i];
       allChoices.push(tmp);
     });
-    // console.log(allChoices);
+    return allChoices;
+  }
+
+
+  // ----------------------------------------------------------
+  // LISTENS FOR CHANGES IN SLIDERS AND STORES THEM
+  choices.addEventListener("input", function() {
+    const allChoices = getCurrentProsCons();
     populate(allChoices);
   }, false);
 
