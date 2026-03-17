@@ -52,7 +52,7 @@
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
       reason.insertAdjacentHTML("afterend", newSlider);
       
-      // SETS AND SHOWS DEFAULT SLIDER PERCENTAGE WHEN FIRST ADDED
+      // COUNTS SLIDERS WHEN ADDED AND SHOWS DEFAULT VALUE ZERO
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0, proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
@@ -91,8 +91,6 @@
 
     console.log(`Populate with`, choices);
 
-    let allPros = choices.filter(ch => ch.id.startsWith("pro"));
-    let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
@@ -111,8 +109,7 @@
       });
     });
 
-    allProCons(allPros);
-    allProCons(allCons);
+    allProCons(choices);
             
 
     // CALCULATES AVERAGE PERCENTAGE OF PRO AND CON VALUES
