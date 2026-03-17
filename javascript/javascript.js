@@ -15,6 +15,7 @@
   let choicesNsum = 0;
   let proSliders = 0;
   let conSliders = 0;
+  let sliderID;
 
 
   // ----------------------------------------------------------
@@ -34,7 +35,8 @@
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
-    const proORcon = fornot == "pro" ? `pro${proSliders+1}` : `con${conSliders+1}`;
+    console.log(fornot);
+    const proORcon = fornot == "for" ? `pro${proSliders+1}` : `con${conSliders+1}`;
     
     if (text) {
       // CREATES NEW SLIDER HTML AND ADDS TO DOM
@@ -52,7 +54,7 @@
       
       // SETS AND SHOWS DEFAULT SLIDER PERCENTAGE WHEN FIRST ADDED
       if (choicesYsum === 0 || choicesNsum === 0) {
-        if (fornot === "pro") choiceY.innerHTML = 0, proSliders += 1;
+        if (fornot === "for") choiceY.innerHTML = 0, proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
       
@@ -71,22 +73,28 @@
   } // END addReason()
 
   // ----------------------------------------------------------
+  // CALCULATE
+
+  const sliderValue = (choiceValue) => {
+    return choiceValue * 10;
+  };
+
+  const showSliderValue = (slider, value) => {
+    document.querySelector(`.${slider}`).innerHTML = value;
+  };
+
+
+
+  // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
 
-    let sliderID;
+    console.log(`Populate with`, choices);
+
     let allPros = choices.filter(ch => ch.id.startsWith("pro"));
     let allCons = choices.filter(ch => ch.id.startsWith("con"));
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
-
-    const sliderValue = (choiceValue) => {
-      return choiceValue * 10;
-    };
-
-    const showSliderValue = (slider, value) => {
-      document.querySelector(`.${slider}`).innerHTML = value;
-    };
 
     // SUMS PRO AND CON VALUES; DISPLAYS THEM IN OUTPUT TAG
     // EDIT - DON’T USE innerHTML for calculations!
@@ -102,7 +110,6 @@
         }
       });
     });
-
 
     allProCons(allPros);
     allProCons(allCons);
@@ -120,17 +127,19 @@
 
     // DISPLAYS OVERALL RESULT OF CHOICES
     if (isNaN(avPros) || isNaN(avCons)) {
+      console.log(`missing either pros or cons ${avPros},${avCons}`);
       getEl("decision").innerHTML  = `Add both pros <em>and</em> cons,<br>rank their importance with sliders`;
       getEl("decision").className = "dunno";
     } else if (avPros > avCons) {
-      console.log(avPros,avCons);
+      console.log(`pros bigger than cons ${avPros},${avCons}`);
       getEl("decision").innerHTML = "Seems you want to!";
       getEl("decision").className = "yes";
     } else if (avPros < avCons) {
-      console.log(avPros,avCons);
+      console.log(`pros smaller than cons ${avPros},${avCons}`);
       getEl("decision").innerHTML = "Seems you don't want to!";
       getEl("decision").className = "not";
     } else {
+      console.log(`pros same as cons ${avPros},${avCons}`);
       getEl("decision").innerHTML = "Make up your mind!";
       getEl("decision").className = "dunno";
     }
