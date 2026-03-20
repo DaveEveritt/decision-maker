@@ -48,16 +48,10 @@
     return newSlider;
   };
   
-  // THIS SLOWS DOWN PAGE LOAD?
-  // const getDeleteButtons = () => {
-  //   if (document.getElementsByClassName("delete") !== undefined){
-  //     console.log("in getDeleteButtons");
-  //     return document.getElementsByClassName("delete");
-  //   }
-  // };
+  // let allDelButtons;
   function getDeleteButtons(){
-    console.log("in getDeleteButtons");
-    return document.getElementsByClassName("delete");
+    const allDelButtons = [...document.getElementsByClassName("delete")];
+    return allDelButtons;
   };
   
   // ----------------------------------------------------------
@@ -79,19 +73,17 @@
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
 
-      if ([...document.getElementsByClassName("delete")].length !== 0){
-        getDeleteButtons();
+      if ([...document.getElementsByClassName("delete")].length !== 1) {
+        console.log("GOT DeleteButtons: " + getDeleteButtons());
       }
     }
   } // END addReason()
   
-  
-  
-  // if ([...document.getElementsByClassName("delete")].length !== 0){
-  //   const deleteButtons = getDeleteButtons();
-  //   // console.log(deleteButtons);
-  //   console.log("We have delete buttons?");
-  // }
+
+  // console.log(getDeleteButtons()); // undefined/empty???
+  // // allDeleButtons.addEventListener("click", function() {
+  //   console.log("adding EV to all delete buttons");
+  // }, false);
 
   // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
   // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
