@@ -74,11 +74,14 @@
       }
 
       const deleteButton = document.getElementById(`del-${proORcon}`);
-      console.log(deleteButton);
+      // console.log(deleteButton);
       
       deleteButton.addEventListener("click", (ev) => {
         const currentReason = document.getElementById(proORcon).parentElement;
-        currentReason.remove();
+        if (confirm("Delete reason?")) {
+          currentReason.remove();
+        }
+        // currentReason.remove();
         allChoices = getCurrentProsCons();
         if (choicesYsum === 0 || choicesNsum === 0) {
           if (fornot === "for") choiceY.innerHTML = 0, proSliders -= 1;
@@ -88,27 +91,13 @@
       });
       
       allChoices = getCurrentProsCons();
-      console.log(allChoices);
+      // console.log(allChoices);
+      populate(allChoices);
 
     }
   } // END addReason()
   
-  
-  // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
-  // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
-  // deleteButtons.addEventListener("click", function(e) {
-  //   console.log(e.target);
-  // });
-  // let deleteWhat = this.dataset.parentId;
-  // deleteWhat.addEventListener("click", function(e) {
-  //   console.log(e.target)
-  //   if (confirm("Delete reason?")) {
-  //     deleteWhat.parentElement.remove();
-  //   }
-  //   console.log(choices);
-  //   populate(allChoices);
-  // });
-  
+    
 
   // ----------------------------------------------------------
   // MULTIPLY SLIDER VALUE BY 10
@@ -128,7 +117,7 @@
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
 
-    console.log(choices);
+    // console.log(choices);
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
