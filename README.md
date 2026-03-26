@@ -1,4 +1,4 @@
-# Decision maker [Online version](https://daveeveritt.github.io/decision-maker/)
+# Decision maker [Online version](https://daveeveritt.codeberg.page/decision-maker/)
 
 Because I often find decisions hard, I made this to scratch my own indecisive itch.
 
