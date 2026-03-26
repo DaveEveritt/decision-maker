@@ -4,20 +4,21 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 
 ## TO DO
 
-- [ ] FIX: delete reason comes up three times before deleting
-- [ ] FIX: with one pro/con slider each, 100% shows opposite of pro/con (LINE 122)
+- [ ] abstract counting sliders into a function
+- [ ] set up code on server under un.fased.org
+
 
 ## POSSIBLE USER OPTIONS
 
 - [ ] limit for/against reasons to 7 to prevent overthinking
 - [ ] name and store previous choices to load again
-- [ ] add a field to enter the text of the question
+- [ ] add a field to edit the text of the question
 - [ ] add a "delete all" option (`choices.forEach`?)
 
 ## TO DO CODE
 
 - [ ] test Open Graph Protocol image for social media
-- [ ] pre-calculate `getEl("decision")` overall message to simplify `else if`
+- [ ] abstract `getEl("decision")` into a function (messages in an object?)
 - [ ] use another method instead of innerHTML for calculations
 - [ ] try `template`/`slot` for list items
 
@@ -25,6 +26,8 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 
 ## DONE
 
+- [x] FIX: delete reason comes up three times before deleting
+- [x] FIX: with one pro/con slider each, 100% shows opposite of pro/con (LINE 122)
 - [x] set up repo on codeberg
 - [x] enable deletion of choices (`element.remove()`)
 - [x] trap for NaN when only one slider
