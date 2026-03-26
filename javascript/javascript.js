@@ -48,12 +48,7 @@
     return sliderMarkup;
   };
   
-  // let allDelButtons;
-  // function getDeleteButtons(){
-  //   const allDelButtons = [...document.getElementsByClassName("delete")];
-  //   return allDelButtons;
-  // };
-  
+
   // ----------------------------------------------------------
   // ADDS REASONS TO DOM WHEN INPUT
   function addReason(e) {
@@ -73,11 +68,11 @@
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
 
-      const deleteButton = document.getElementById(`del-${proORcon}`);
+      const deleteButton = getEl(`del-${proORcon}`);
       // console.log(deleteButton);
       
       deleteButton.addEventListener("click", (ev) => {
-        const currentReason = document.getElementById(proORcon).parentElement;
+        const currentReason = getEl(proORcon).parentElement;
         if (confirm("Delete reason?")) {
           currentReason.remove();
         }
@@ -116,8 +111,6 @@
   // ----------------------------------------------------------
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
-
-    // console.log(choices);
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
