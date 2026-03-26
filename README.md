@@ -1,4 +1,4 @@
-# Decision maker [Online version](https://daveeveritt.github.io/decision-maker/)
+# Decision maker [Online version](https://daveeveritt.codeberg.page/decision-maker/)
 
 Because I often find decisions hard, I made this to scratch my own indecisive itch.
 
@@ -25,6 +25,7 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 
 ## DONE
 
+- [x] set up repo on codeberg
 - [x] enable deletion of choices (`element.remove()`)
 - [x] trap for NaN when only one slider
 - [x] use Y N sliders instead of total sliders (line ~46)

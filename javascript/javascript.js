@@ -17,7 +17,7 @@
   let conSliders = 0;
   let allChoices;
   let sliderID;
-  let newSlider;
+  let sliderMarkup;
 
 
   // ----------------------------------------------------------
@@ -36,46 +36,72 @@
 
   // ----------------------------------------------------------
   // ADDS REASON HTML TO DOM
-  const addSlider = (procon, txt) => {
-    newSlider = `
+  const getSliderMarkup = (procon, txt) => {
+    sliderMarkup = `
     <label for="${procon}">${txt}
       <input type="range" id="${procon}" max="10" value="0">
       <output for="${procon}" class="${procon}">0</output>
-      <!-- <button aria-label="delete reason" type="button" data-parent-id="${procon}" class="delete">
+      <button aria-label="delete reason" type="button" id="del-${procon}" data-parentId="${procon}" class="delete">
         <span aria-hidden="true" title="delete reason">x</span>
-      </button> -->
+      </button>
     </label>`;
-    return newSlider;
+    return sliderMarkup;
   };
-
-
+  
+  // let allDelButtons;
+  // function getDeleteButtons(){
+  //   const allDelButtons = [...document.getElementsByClassName("delete")];
+  //   return allDelButtons;
+  // };
+  
   // ----------------------------------------------------------
   // ADDS REASONS TO DOM WHEN INPUT
   function addReason(e) {
     let text = e.target.value || "";
     let fornot = e.target.id;
     const proORcon = fornot == "for" ? `pro${proSliders+1}` : `con${conSliders+1}`;
-    
     // CREATES NEW SLIDER AND ADDS TO DOM
     if (text) {
-      newSlider = addSlider(proORcon, text);
-
+      sliderMarkup = getSliderMarkup(proORcon, text);
+      
       const reason = getEl(`${fornot}Reasons`).firstElementChild;
-      reason.insertAdjacentHTML("afterend", newSlider);
+      reason.insertAdjacentHTML("afterend", sliderMarkup);
       
       // COUNTS SLIDERS WHEN ADDED, SHOWS DEFAULT ZERO VALUE
       if (choicesYsum === 0 || choicesNsum === 0) {
         if (fornot === "for") choiceY.innerHTML = 0, proSliders += 1;
         if (fornot === "not") choiceN.innerHTML = 0, conSliders += 1;
       }
+
+      const deleteButton = document.getElementById(`del-${proORcon}`);
+      console.log(deleteButton);
+      
+      deleteButton.addEventListener("click", (ev) => {
+        const currentReason = document.getElementById(proORcon).parentElement;
+        currentReason.remove();
+        allChoices = getCurrentProsCons();
+        if (choicesYsum === 0 || choicesNsum === 0) {
+          if (fornot === "for") choiceY.innerHTML = 0, proSliders -= 1;
+          if (fornot === "not") choiceN.innerHTML = 0, conSliders -= 1;
+        }
+        populate(allChoices);
+      });
+      
+      allChoices = getCurrentProsCons();
+      console.log(allChoices);
+
     }
-    
   } // END addReason()
   
   
   // DELETES REASON AFTER USER CONFIRMATION AND RECALCULATES TOTALS
   // let deleteWhat = document.querySelector(`[data-parent-id=${proORcon}]`);
-  // deleteWhat.addEventListener("click", function() {
+  // deleteButtons.addEventListener("click", function(e) {
+  //   console.log(e.target);
+  // });
+  // let deleteWhat = this.dataset.parentId;
+  // deleteWhat.addEventListener("click", function(e) {
+  //   console.log(e.target)
   //   if (confirm("Delete reason?")) {
   //     deleteWhat.parentElement.remove();
   //   }
@@ -102,6 +128,7 @@
   // DISPLAYS INPUT RANGE VALUE FOR THE NUMBER OF SLIDERS
   function populate(choices) {
 
+    console.log(choices);
     let avPros = 0, avCons = 0;
     let sumPros = 0, sumCons = 0;
 
