@@ -39,6 +39,17 @@ Because I often find decisions hard, I made this to scratch my own indecisive it
 
 Originally ported *to* Meteor *from* a pure Javascript prototype, then reverted *back to* JavaScript because… frameworks.
 
+---
+
+## Accessibility References Used
+
+- [Accessible close buttons](https://www.benjystanton.co.uk/blog/accessible-close-buttons/)
+- [Where to Put Focus When Deleting a Thing](https://adrianroselli.com/2023/08/where-to-put-focus-when-deleting-a-thing.html)
+- [ARIA: aria-labelledby attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby)
+- [How to (not) use aria-label, -labelledby and -describedby](https://www.stevefrenzel.dev/posts/how-to-not-use-aria-label-aria-labelledby-and-aria-describedby/)
+- [WAI: Menu Structure](https://www.w3.org/WAI/tutorials/menus/structure/)
+
+
 <!-- ## Greame’s suggestion
 
 For the model, remove "for" and "against" to simplify. Just take the average or the weighted average if you add weights (0.0 - 1.0). For the interface, address each individual item in isolation to allow for a clear focus. You can present the summary on a separate page to avoid distraction. All handled via localstorage or similar. -->
